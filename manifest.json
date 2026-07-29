@@ -1,0 +1,15 @@
+{
+  "name": "오늘의 영어 학습",
+  "short_name": "EN Quiz",
+  "description": "매일 아침 새로 업데이트되는 영어 단어·숙어 퀴즈와 대화 연습",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#6D5BD0",
+  "theme_color": "#6D5BD0",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>오늘의 영어 학습</title>
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#6D5BD0">
+<link rel="icon" href="./icon-192.png">
+<link rel="apple-touch-icon" href="./icon-180.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="EN Quiz">
+<style>
+  :root{
+    --bg1:#6D5BD0; --bg2:#8B7FE8;
+    --card:#ffffff; --ink:#232134; --sub:#6b6880;
+    --accent:#6D5BD0;
+    --good:#1DB874; --good-bg:#E8FBF2;
+    --bad:#E5484D; --bad-bg:#FDEBEC;
+    --line:#EDEBF7; --chip:#F4F2FD;
+    --xp:#FF9F1C; --xp-bg:#FFF3E0;
+    --flame:#FF6B4A;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Apple SD Gothic Neo","Segoe UI",Roboto,sans-serif;background:linear-gradient(160deg,var(--bg1),var(--bg2) 60%,#B9AEF2);min-height:100vh;padding:22px 14px 60px;color:var(--ink);}
+  .wrap{max-width:520px;margin:0 auto;}
+
+  .statbar{display:flex;justify-content:center;gap:10px;margin-bottom:16px;flex-wrap:wrap;}
+  .stat-chip{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.18);backdrop-filter:blur(4px);color:#fff;font-size:12.5px;font-weight:800;padding:6px 12px;border-radius:99px;}
+  .stat-chip .n{font-size:13px;}
+
+  .top{text-align:center;color:#fff;margin-bottom:16px;}
+  .top .date{font-size:12.5px;letter-spacing:.06em;opacity:.85;font-weight:700;text-transform:uppercase;}
+  .top h1{font-size:24px;margin:6px 0 4px;font-weight:800;}
+  .top p{margin:0;font-size:13.5px;opacity:.9;}
+
+  .progress{display:flex;gap:6px;justify-content:center;margin:16px 0 20px;}
+  .dot{width:30px;height:6px;border-radius:99px;background:rgba(255,255,255,.35);transition:background .3s;}
+  .dot.active{background:#fff;}
+  .dot.done{background:#FFD76A;}
+
+  .card{background:var(--card);border-radius:22px;box-shadow:0 10px 30px rgba(60,50,120,.18);padding:22px 20px;margin-bottom:16px;}
+  .section-label{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;letter-spacing:.04em;color:var(--accent);background:var(--chip);padding:5px 11px;border-radius:99px;margin-bottom:12px;}
+  .qcount{float:right;font-size:12px;font-weight:700;color:var(--sub);}
+
+  .type-tag{display:inline-block;font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:8px;margin-bottom:10px;letter-spacing:.02em;}
+  .type-tag.word{color:#2757C7;background:#E9F0FF;}
+  .type-tag.idiom{color:#8A5A00;background:#FFF3D6;}
+
+  .quiz-q{font-size:16.5px;font-weight:700;margin-bottom:16px;line-height:1.55;white-space:pre-line;}
+
+  .opt{display:block;width:100%;text-align:left;padding:13px 16px;margin-bottom:10px;border-radius:14px;border:2px solid var(--line);background:#fff;font-size:14.5px;font-weight:600;color:var(--ink);cursor:pointer;transition:all .15s;font-family:inherit;}
+  .opt:hover{border-color:var(--accent);}
+  .opt.picked{border-color:var(--accent);background:var(--chip);}
+  .opt.correct{background:var(--good-bg);border-color:var(--good);color:var(--good);}
+  .opt.wrong{background:var(--bad-bg);border-color:var(--bad);color:var(--bad);}
+  .opt:disabled{cursor:default;}
+
+  .nav-row{display:flex;gap:10px;margin-top:6px;}
+  .next-btn{flex:1;padding:14px;border:none;border-radius:14px;background:var(--accent);color:#fff;font-weight:800;font-size:15px;cursor:pointer;font-family:inherit;}
+  .next-btn:disabled{opacity:.4;cursor:default;}
+  .next-btn.ghost{background:#fff;color:var(--accent);border:2px solid var(--line);}
+
+  .review-item{border-bottom:1px solid var(--line);padding:16px 0;}
+  .review-item:first-child{padding-top:0;}
+  .review-item:last-child{border-bottom:none;padding-bottom:0;}
+  .review-q{font-size:14px;font-weight:700;margin-bottom:8px;line-height:1.5;}
+  .review-answers{display:flex;flex-direction:column;gap:6px;margin-bottom:10px;}
+  .review-tag{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;padding:8px 12px;border-radius:10px;}
+  .review-tag.you-right{background:var(--good-bg);color:#146C46;}
+  .review-tag.you-wrong{background:var(--bad-bg);color:#9C1F23;text-decoration:line-through;}
+  .review-tag.answer{background:var(--good-bg);color:#146C46;}
+  .review-mean{font-size:13.5px;color:var(--sub);line-height:1.55;margin-bottom:8px;}
+  .review-ex{background:var(--chip);border-radius:12px;padding:10px 12px;font-size:13px;line-height:1.55;margin-bottom:6px;}
+  .review-ex .en{color:var(--ink);font-weight:600;}
+  .review-ex .ko{color:var(--sub);}
+
+  .talk-topic{font-size:18px;font-weight:800;margin-bottom:10px;line-height:1.4;}
+  .talk-sub{font-size:13.5px;color:var(--sub);margin-bottom:16px;line-height:1.6;}
+  .talk-q{background:var(--chip);border-radius:14px;padding:12px 14px;font-size:14px;font-weight:600;margin-bottom:10px;line-height:1.5;}
+  .talk-cta{background:var(--xp-bg);border:1.5px dashed var(--xp);border-radius:14px;padding:14px;font-size:13.5px;color:#8A5A00;line-height:1.6;margin-top:14px;}
+
+  .result{text-align:center;padding:6px 4px 4px;}
+  .result .emoji{font-size:50px;margin-bottom:6px;}
+  .result h2{margin:4px 0 6px;font-size:21px;}
+  .result-stats{display:flex;justify-content:center;gap:10px;margin:14px 0 16px;flex-wrap:wrap;}
+  .rstat{background:var(--chip);border-radius:14px;padding:10px 16px;min-width:74px;}
+  .rstat .v{font-size:18px;font-weight:800;color:var(--accent);}
+  .rstat .l{font-size:11px;color:var(--sub);font-weight:700;margin-top:2px;}
+  .result p.msg{margin:0 0 18px;color:var(--sub);font-size:13.5px;line-height:1.6;}
+  .restart-btn{border:2px solid var(--line);background:#fff;color:var(--ink);font-weight:700;font-size:13.5px;padding:10px 18px;border-radius:12px;cursor:pointer;font-family:inherit;}
+
+  .hint{text-align:center;color:rgba(255,255,255,.85);font-size:12px;margin-top:8px;}
+
+  #screens{position:relative;}
+  .screen{display:none;}
+  .screen.active{display:block;animation:fadeIn .35s ease;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+  .confetti{position:fixed;top:-10px;font-size:20px;pointer-events:none;animation:fall linear forwards;z-index:50;}
+  @keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:.2;}}
+
+  .xp-float{position:fixed;font-size:14px;font-weight:800;color:#fff;background:var(--xp);padding:4px 10px;border-radius:99px;pointer-events:none;animation:floatUp 1s ease forwards;z-index:60;}
+  @keyframes floatUp{0%{opacity:0;transform:translateY(0);}15%{opacity:1;}100%{opacity:0;transform:translateY(-40px);}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="statbar">
+    <div class="stat-chip">🔥 <span class="n" id="streakN">1</span>일 연속</div>
+    <div class="stat-chip">⭐ <span class="n" id="xpN">0</span> XP</div>
+    <div class="stat-chip">⏱ 약 15분</div>
+  </div>
+
+  <div class="top">
+    <div class="date" id="dateLabel">DAY 1</div>
+    <h1 id="title">오늘의 영어 학습</h1>
+    <p id="subtitle">단어 · 숙어 퀴즈 + 대화 연습</p>
+  </div>
+
+  <div class="progress" id="progress"></div>
+
+  <div id="screens">
+
+    <!-- Screen 0: Warm-up quiz (answer first, no reveal) -->
+    <div class="screen active" data-idx="0">
+      <div class="card">
+        <span class="section-label">🧠 워밍업 퀴즈</span>
+        <span class="qcount" id="qcount">1 / 5</span>
+        <div style="clear:both"></div>
+        <span class="type-tag" id="qTypeTag"></span>
+        <div class="quiz-q" id="quizQ"></div>
+        <div id="quizOpts"></div>
+      </div>
+      <div class="nav-row">
+        <button class="next-btn ghost" id="prevBtn" onclick="prevQ()">이전</button>
+        <button class="next-btn" id="nextQBtn" onclick="nextQ()" disabled>다음</button>
+      </div>
+      <p class="hint">정답을 몰라도 괜찮아요 — 먼저 감으로 풀어보세요. 채점과 설명은 다음 화면에서 한번에 확인해요.</p>
+    </div>
+
+    <!-- Screen 1: Answers & review -->
+    <div class="screen" data-idx="1">
+      <div class="card">
+        <span class="section-label">✅ 정답 & 풀이</span>
+        <div id="reviewList"></div>
+      </div>
+      <button class="next-btn show" onclick="goTo(2)">오늘의 대화 주제 보기 →</button>
+    </div>
+
+    <!-- Screen 2: Conversation prompt -->
+    <div class="screen" data-idx="2">
+      <div class="card">
+        <span class="section-label">💬 오늘의 대화 연습 (약 10분)</span>
+        <div class="talk-topic" id="talkTopic"></div>
+        <div class="talk-sub" id="talkIntro"></div>
+        <div id="talkQs"></div>
+        <div class="talk-cta">👉 지금 이 채팅창에 오늘 배운 표현을 섞어서 영어로 자유롭게 답해보세요. 몇 마디 주고받고 나면, 제가 틀린 문법이나 더 자연스러운 표현을 정리해서 알려드릴게요.</div>
+      </div>
+      <button class="next-btn show" onclick="goTo(3)">오늘 학습 마무리 →</button>
+    </div>
+
+    <!-- Screen 3: Result -->
+    <div class="screen" data-idx="3">
+      <div class="card result">
+        <div class="emoji" id="resultEmoji">🎉</div>
+        <h2 id="resultTitle">오늘도 완료!</h2>
+        <div class="result-stats">
+          <div class="rstat"><div class="v" id="rScore">0/5</div><div class="l">정답</div></div>
+          <div class="rstat"><div class="v" id="rXp">+0</div><div class="l">획득 XP</div></div>
+          <div class="rstat"><div class="v" id="rStreak">1일</div><div class="l">연속 학습</div></div>
+        </div>
+        <p class="msg" id="resultMsg">퀴즈는 끝났지만, 대화 연습은 채팅에서 계속 이어가 보세요!</p>
+        <button class="restart-btn" onclick="goTo(0)">퀴즈 다시 풀어보기</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* ============ 오늘의 콘텐츠 (매일 이 부분만 교체) ============
+   items: 단어(word)와 숙어(idiom)를 섞어서 4~6개.
+   각 item: { type:'word'|'idiom', question, options[4], correctIndex, meaning, examples:[{en,ko}] }
+*/
+const DATA = {
+  dateLabel: "DAY 1",
+  streak: 1,
+  subtitle: "단어 · 숙어 퀴즈 + 대화 연습",
+  items: [
+    {
+      type: "idiom",
+      question: "빈칸에 가장 알맞은 표현은?\n\n\"I know you don't want to redo the slides, but we have to ___ and get it done before the meeting.\"",
+      options: ["bite the bullet", "touch base", "play it safe", "give it away"],
+      correctIndex: 0,
+      headline: "bite the bullet",
+      meaning: "(하기 싫지만) 마음먹고 해내다, 참고 견디다 — 반드시 \"bite\"라는 동사와 함께 쓰는 고정 표현이에요.",
+      examples: [
+        { en: "I finally bit the bullet and rewrote the whole report.", ko: "결국 마음먹고 보고서를 전부 다시 썼어요." },
+        { en: "You just have to bite the bullet and make the call.", ko: "그냥 마음 굳게 먹고 전화하는 수밖에 없어." }
+      ]
+    },
+    {
+      type: "word",
+      question: "\"I was wondering if you could take a look at this.\" 이 표현이 \"Can you look at this?\"보다 더 나은 이유는?",
+      options: ["문법이 더 간단해서", "더 정중하고 완곡해서", "더 짧아서", "뜻이 완전히 달라서"],
+      correctIndex: 1,
+      headline: "I was wondering if you could ...",
+      meaning: "정중하게 부탁할 때 쓰는 완곡 표현. \"Can you...\"보다 훨씬 부드럽고 격식 있게 들려요.",
+      examples: [
+        { en: "I was wondering if you could send me the updated file when you get a chance.", ko: "시간 되실 때 업데이트된 파일을 보내주실 수 있을지 여쭤봐도 될까요." },
+        { en: "I was wondering if you could clarify point three in your email.", ko: "이메일 세 번째 항목을 조금 더 설명해주실 수 있을지 궁금해요." }
+      ]
+    },
+    {
+      type: "word",
+      question: "\"Let's touch base next week.\"에서 touch base의 의미는?",
+      options: ["끝까지 싸우다", "짧게 연락해서 근황을 확인하다", "완전히 그만두다", "매우 화를 내다"],
+      correctIndex: 1,
+      headline: "touch base",
+      meaning: "짧게 연락하다, 근황을 확인하다 — 업무 이메일/미팅에서 자주 쓰는 표현이에요.",
+      examples: [
+        { en: "Let's touch base next week to see how the project is going.", ko: "다음 주에 짧게 연락해서 프로젝트가 어떻게 되고 있는지 확인해봐요." },
+        { en: "I'll touch base with you once I hear back from the client.", ko: "클라이언트한테 답이 오면 그때 다시 연락드릴게요." }
+      ]
+    },
+    {
+      type: "idiom",
+      question: "빈칸에 가장 알맞은 것은: \"She's been ___ under the weather lately, so she took a few days off.\"",
+      options: ["feeling", "getting", "taking", "staying"],
+      correctIndex: 0,
+      headline: "feeling under the weather",
+      meaning: "몸이 좀 안 좋다는 뜻의 관용구예요. 반드시 \"feeling\"과 짝을 이뤄 쓰고, \"getting\"은 쓰지 않아요.",
+      examples: [
+        { en: "I'm feeling a bit under the weather today, so I might leave early.", ko: "오늘 몸이 좀 안 좋아서 일찍 들어갈 수도 있어요." },
+        { en: "He's been under the weather since Monday.", ko: "그는 월요일부터 몸이 안 좋았어요." }
+      ]
+    },
+    {
+      type: "word",
+      question: "\"We don't have a fixed schedule — let's just play it by ear.\"에서 play it by ear의 의미는?",
+      options: ["악기를 연주하다", "미리 계획하지 않고 상황을 보며 결정하다", "귀담아듣다", "일정을 철저히 지키다"],
+      correctIndex: 1,
+      headline: "play it by ear",
+      meaning: "미리 계획하지 않고 상황을 보면서 즉흥적으로 결정하다.",
+      examples: [
+        { en: "I'm not sure what time we'll finish, so let's play it by ear.", ko: "몇 시에 끝날지 몰라서, 상황 봐가면서 하자." },
+        { en: "We don't have a fixed schedule — let's just play it by ear.", ko: "정해진 일정이 없으니까 그때그때 상황 봐서 결정하자." }
+      ]
+    }
+  ],
+  talk: {
+    topic: "\"A time you had to bite the bullet\"",
+    intro: "오늘 배운 표현을 활용해서, 하기 싫었지만 결국 마음먹고 해냈던 경험에 대해 이야기해봐요.",
+    questions: [
+      "What's something you had to \"bite the bullet\" and do recently?",
+      "How did you feel before and after doing it?",
+      "Would you do it differently next time?"
+    ]
+  }
+};
+/* ============================================================ */
+
+let qi = 0;
+let picked = new Array(DATA.items.length).fill(null);
+let current = 0;
+let earnedXP = 0;
+
+function renderProgress(){
+  const p = document.getElementById('progress');
+  p.innerHTML = '';
+  for(let i=0;i<4;i++){
+    const d = document.createElement('div');
+    d.className = 'dot' + (i===current?' active':'') + (i<current?' done':'');
+    p.appendChild(d);
+  }
+}
+
+function goTo(idx){
+  current = idx;
+  document.querySelectorAll('.screen').forEach(s=>{
+    s.classList.toggle('active', Number(s.dataset.idx)===idx);
+  });
+  renderProgress();
+  if(idx===1) renderReview();
+  if(idx===2) renderTalk();
+  if(idx===3){ showResult(); burstConfetti(); }
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function renderQuizQuestion(){
+  const item = DATA.items[qi];
+  document.getElementById('qcount').textContent = (qi+1) + ' / ' + DATA.items.length;
+  const tag = document.getElementById('qTypeTag');
+  tag.textContent = item.type === 'idiom' ? 'IDIOM 숙어' : 'WORD 표현';
+  tag.className = 'type-tag ' + item.type;
+  document.getElementById('quizQ').textContent = item.question;
+  const opts = document.getElementById('quizOpts');
+  opts.innerHTML = '';
+  item.options.forEach((opt, i)=>{
+    const btn = document.createElement('button');
+    btn.className = 'opt' + (picked[qi]===i ? ' picked' : '');
+    btn.textContent = opt;
+    btn.onclick = ()=>{
+      picked[qi] = i;
+      renderQuizQuestion();
+      document.getElementById('nextQBtn').disabled = false;
+    };
+    opts.appendChild(btn);
+  });
+  document.getElementById('prevBtn').disabled = (qi===0);
+  document.getElementById('nextQBtn').disabled = (picked[qi]===null);
+  document.getElementById('nextQBtn').textContent = (qi === DATA.items.length-1) ? '채점하기' : '다음';
+}
+
+function prevQ(){ if(qi>0){ qi--; renderQuizQuestion(); } }
+function nextQ(){
+  if(qi < DATA.items.length-1){ qi++; renderQuizQuestion(); }
+  else { goTo(1); }
+}
+
+function renderReview(){
+  const list = document.getElementById('reviewList');
+  list.innerHTML = '';
+  let correctCount = 0;
+  DATA.items.forEach((item, i)=>{
+    const isCorrect = picked[i] === item.correctIndex;
+    if(isCorrect) correctCount++;
+    const div = document.createElement('div');
+    div.className = 'review-item';
+    let answersHtml = '';
+    if(picked[i] !== null && picked[i] !== item.correctIndex){
+      answersHtml += `<div class="review-tag you-wrong">내 답: ${item.options[picked[i]]}</div>`;
+    }
+    answersHtml += `<div class="review-tag ${isCorrect ? 'you-right' : 'answer'}">${isCorrect ? '✔ 내 답 (정답!)' : '정답'}: ${item.options[item.correctIndex]}</div>`;
+    div.innerHTML = `
+      <span class="type-tag ${item.type}">${item.type==='idiom'?'IDIOM 숙어':'WORD 표현'} · ${item.headline}</span>
+      <div class="review-q">${item.question.replace(/\n/g,' ')}</div>
+      <div class="review-answers">${answersHtml}</div>
+      <div class="review-mean">${item.meaning}</div>
+      ${item.examples.map(x=>`<div class="review-ex"><div class="en">${x.en}</div><div class="ko">${x.ko}</div></div>`).join('')}
+    `;
+    list.appendChild(div);
+  });
+  earnedXP = correctCount * 10 + (DATA.items.length===correctCount ? 20 : 0);
+  window.__correctCount = correctCount;
+}
+
+function renderTalk(){
+  document.getElementById('talkTopic').textContent = DATA.talk.topic;
+  document.getElementById('talkIntro').textContent = DATA.talk.intro;
+  const qs = document.getElementById('talkQs');
+  qs.innerHTML = '';
+  DATA.talk.questions.forEach(q=>{
+    const d = document.createElement('div');
+    d.className = 'talk-q';
+    d.textContent = '· ' + q;
+    qs.appendChild(d);
+  });
+}
+
+function showResult(){
+  const correctCount = window.__correctCount || 0;
+  document.getElementById('rScore').textContent = correctCount + '/' + DATA.items.length;
+  document.getElementById('rXp').textContent = '+' + earnedXP;
+  document.getElementById('rStreak').textContent = DATA.streak + '일';
+  document.getElementById('xpN').textContent = earnedXP;
+  const emoji = document.getElementById('resultEmoji');
+  const title = document.getElementById('resultTitle');
+  const msg = document.getElementById('resultMsg');
+  if(correctCount === DATA.items.length){
+    emoji.textContent = '🏆'; title.textContent = '완벽해요!';
+    msg.textContent = '오늘 표현을 전부 맞혔어요. 대화 연습까지 마무리하면 오늘 학습 끝!';
+  } else if(correctCount >= Math.ceil(DATA.items.length/2)){
+    emoji.textContent = '🎉'; title.textContent = '오늘도 잘했어요!';
+    msg.textContent = '틀린 부분은 위 풀이에서 다시 확인해보세요. 대화 연습도 잊지 마세요!';
+  } else {
+    emoji.textContent = '💪'; title.textContent = '오늘도 완료!';
+    msg.textContent = '틀린 것도 학습 과정이에요. 위 풀이를 한 번 더 읽어보고, 대화 연습으로 이어가 봐요.';
+  }
+}
+
+function burstConfetti(){
+  const emojis = ['🎉','✨','🙌','⭐','💫'];
+  for(let i=0;i<16;i++){
+    const el = document.createElement('div');
+    el.className = 'confetti';
+    el.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    el.style.left = Math.random()*100 + 'vw';
+    el.style.animationDuration = (2.2 + Math.random()*1.4) + 's';
+    el.style.fontSize = (14 + Math.random()*14) + 'px';
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(), 4000);
+  }
+}
+
+document.getElementById('dateLabel').textContent = DATA.dateLabel;
+document.getElementById('subtitle').textContent = DATA.subtitle;
+document.getElementById('streakN').textContent = DATA.streak;
+renderQuizQuestion();
+renderProgress();
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(()=>{});
+  });
+}
+</script>
+</body>
+</html>
