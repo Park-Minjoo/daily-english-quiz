@@ -21,20 +21,21 @@
     --bad:#E5484D; --bad-bg:#FDEBEC;
     --line:#EDEBF7; --chip:#F4F2FD;
     --xp:#FF9F1C; --xp-bg:#FFF3E0;
-    --flame:#FF6B4A;
+    --rev:#0E7C86; --rev-bg:#E4F6F8;
   }
   *{box-sizing:border-box;}
-  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Apple SD Gothic Neo","Segoe UI",Roboto,sans-serif;background:linear-gradient(160deg,var(--bg1),var(--bg2) 60%,#B9AEF2);min-height:100vh;padding:22px 14px 60px;color:var(--ink);}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Apple SD Gothic Neo","Segoe UI",Roboto,sans-serif;background:linear-gradient(160deg,var(--bg1),var(--bg2) 60%,#B9AEF2);min-height:100vh;padding:max(22px,env(safe-area-inset-top)) 14px 60px;color:var(--ink);}
   .wrap{max-width:520px;margin:0 auto;}
 
-  .statbar{display:flex;justify-content:center;gap:10px;margin-bottom:16px;flex-wrap:wrap;}
-  .stat-chip{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.18);backdrop-filter:blur(4px);color:#fff;font-size:12.5px;font-weight:800;padding:6px 12px;border-radius:99px;}
-  .stat-chip .n{font-size:13px;}
+  .statbar{display:flex;justify-content:center;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+  .stat-chip{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.18);color:#fff;font-size:12.5px;font-weight:800;padding:6px 12px;border-radius:99px;border:none;font-family:inherit;}
+  button.stat-chip{cursor:pointer;}
+  button.stat-chip:active{background:rgba(255,255,255,.32);}
 
   .top{text-align:center;color:#fff;margin-bottom:16px;}
-  .top .date{font-size:12.5px;letter-spacing:.06em;opacity:.85;font-weight:700;text-transform:uppercase;}
+  .top .date{font-size:12.5px;letter-spacing:.06em;opacity:.85;font-weight:700;}
   .top h1{font-size:24px;margin:6px 0 4px;font-weight:800;}
-  .top p{margin:0;font-size:13.5px;opacity:.9;}
+  .top p{margin:0;font-size:13px;opacity:.9;}
 
   .progress{display:flex;gap:6px;justify-content:center;margin:16px 0 20px;}
   .dot{width:30px;height:6px;border-radius:99px;background:rgba(255,255,255,.35);transition:background .3s;}
@@ -48,6 +49,7 @@
   .type-tag{display:inline-block;font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:8px;margin-bottom:10px;letter-spacing:.02em;}
   .type-tag.word{color:#2757C7;background:#E9F0FF;}
   .type-tag.idiom{color:#8A5A00;background:#FFF3D6;}
+  .rev-badge{display:inline-block;font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:8px;background:var(--rev-bg);color:var(--rev);margin-left:5px;}
 
   .quiz-q{font-size:16.5px;font-weight:700;margin-bottom:16px;line-height:1.55;white-space:pre-line;}
 
@@ -56,7 +58,6 @@
   .opt.picked{border-color:var(--accent);background:var(--chip);}
   .opt.correct{background:var(--good-bg);border-color:var(--good);color:var(--good);}
   .opt.wrong{background:var(--bad-bg);border-color:var(--bad);color:var(--bad);}
-  .opt:disabled{cursor:default;}
 
   .nav-row{display:flex;gap:10px;margin-top:6px;}
   .next-btn{flex:1;padding:14px;border:none;border-radius:14px;background:var(--accent);color:#fff;font-weight:800;font-size:15px;cursor:pointer;font-family:inherit;}
@@ -68,7 +69,7 @@
   .review-item:last-child{border-bottom:none;padding-bottom:0;}
   .review-q{font-size:14px;font-weight:700;margin-bottom:8px;line-height:1.5;}
   .review-answers{display:flex;flex-direction:column;gap:6px;margin-bottom:10px;}
-  .review-tag{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;padding:8px 12px;border-radius:10px;}
+  .review-tag{font-size:13px;font-weight:700;padding:8px 12px;border-radius:10px;}
   .review-tag.you-right{background:var(--good-bg);color:#146C46;}
   .review-tag.you-wrong{background:var(--bad-bg);color:#9C1F23;text-decoration:line-through;}
   .review-tag.answer{background:var(--good-bg);color:#146C46;}
@@ -76,25 +77,50 @@
   .review-ex{background:var(--chip);border-radius:12px;padding:10px 12px;font-size:13px;line-height:1.55;margin-bottom:6px;}
   .review-ex .en{color:var(--ink);font-weight:600;}
   .review-ex .ko{color:var(--sub);}
+  .srs-note{font-size:12px;font-weight:700;color:var(--rev);background:var(--rev-bg);border-radius:9px;padding:7px 10px;margin-top:8px;}
 
   .talk-topic{font-size:18px;font-weight:800;margin-bottom:10px;line-height:1.4;}
   .talk-sub{font-size:13.5px;color:var(--sub);margin-bottom:16px;line-height:1.6;}
   .talk-q{background:var(--chip);border-radius:14px;padding:12px 14px;font-size:14px;font-weight:600;margin-bottom:10px;line-height:1.5;}
-  .talk-cta{background:var(--xp-bg);border:1.5px dashed var(--xp);border-radius:14px;padding:14px;font-size:13.5px;color:#8A5A00;line-height:1.6;margin-top:14px;}
+  .talk-btn{display:block;width:100%;text-align:center;padding:15px;margin-top:16px;border-radius:14px;background:var(--accent);color:#fff;font-weight:800;font-size:15px;text-decoration:none;font-family:inherit;border:none;cursor:pointer;}
+  .talk-btn.sec{background:#fff;color:var(--accent);border:2px solid var(--line);margin-top:8px;}
+  .talk-hint{font-size:12.5px;color:var(--sub);line-height:1.6;margin-top:12px;text-align:center;}
 
   .result{text-align:center;padding:6px 4px 4px;}
   .result .emoji{font-size:50px;margin-bottom:6px;}
   .result h2{margin:4px 0 6px;font-size:21px;}
   .result-stats{display:flex;justify-content:center;gap:10px;margin:14px 0 16px;flex-wrap:wrap;}
-  .rstat{background:var(--chip);border-radius:14px;padding:10px 16px;min-width:74px;}
+  .rstat{background:var(--chip);border-radius:14px;padding:10px 16px;min-width:74px;text-align:center;}
   .rstat .v{font-size:18px;font-weight:800;color:var(--accent);}
   .rstat .l{font-size:11px;color:var(--sub);font-weight:700;margin-top:2px;}
   .result p.msg{margin:0 0 18px;color:var(--sub);font-size:13.5px;line-height:1.6;}
+  .btn-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
   .restart-btn{border:2px solid var(--line);background:#fff;color:var(--ink);font-weight:700;font-size:13.5px;padding:10px 18px;border-radius:12px;cursor:pointer;font-family:inherit;}
 
-  .hint{text-align:center;color:rgba(255,255,255,.85);font-size:12px;margin-top:8px;}
+  .cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+  .cal-title{font-size:16px;font-weight:800;}
+  .cal-nav{display:flex;gap:6px;}
+  .cal-nav button{width:32px;height:32px;border-radius:10px;border:2px solid var(--line);background:#fff;color:var(--accent);font-weight:800;font-size:15px;cursor:pointer;font-family:inherit;line-height:1;}
+  .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;}
+  .cal-dow{text-align:center;font-size:11px;font-weight:800;color:var(--sub);padding-bottom:4px;}
+  .cal-dow.sun{color:#E5484D;}
+  .cal-cell{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:11px;font-size:12.5px;font-weight:700;background:#FAF9FE;}
+  .cal-cell.empty{background:transparent;}
+  .cal-cell.done{background:linear-gradient(160deg,var(--bg1),var(--bg2));color:#fff;}
+  .cal-cell.today{outline:2.5px solid var(--xp);outline-offset:-2.5px;}
+  .cal-cell .mark{font-size:9px;line-height:1;margin-top:2px;opacity:.9;}
+  .cal-legend{display:flex;gap:14px;justify-content:center;margin-top:14px;font-size:11.5px;color:var(--sub);font-weight:600;flex-wrap:wrap;}
+  .cal-legend span{display:flex;align-items:center;gap:5px;}
+  .lg-box{width:13px;height:13px;border-radius:4px;display:inline-block;}
+  .cal-summary{display:flex;justify-content:center;gap:10px;margin:16px 0 4px;flex-wrap:wrap;}
 
-  #screens{position:relative;}
+  .weak-list{margin-top:8px;}
+  .weak-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;background:#FAF9FE;border-radius:11px;margin-bottom:6px;font-size:13px;}
+  .weak-row .h{font-weight:800;}
+  .weak-row .m{font-size:11.5px;color:var(--sub);font-weight:700;white-space:nowrap;}
+
+  .hint{text-align:center;color:rgba(255,255,255,.85);font-size:12px;margin-top:8px;line-height:1.5;}
+
   .screen{display:none;}
   .screen.active{display:block;animation:fadeIn .35s ease;}
   @keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
@@ -102,36 +128,37 @@
   .confetti{position:fixed;top:-10px;font-size:20px;pointer-events:none;animation:fall linear forwards;z-index:50;}
   @keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:.2;}}
 
-  .xp-float{position:fixed;font-size:14px;font-weight:800;color:#fff;background:var(--xp);padding:4px 10px;border-radius:99px;pointer-events:none;animation:floatUp 1s ease forwards;z-index:60;}
-  @keyframes floatUp{0%{opacity:0;transform:translateY(0);}15%{opacity:1;}100%{opacity:0;transform:translateY(-40px);}}
+  .toast{position:fixed;left:50%;bottom:36px;transform:translateX(-50%);background:#232134;color:#fff;font-size:13px;font-weight:700;padding:11px 18px;border-radius:99px;z-index:80;opacity:0;transition:opacity .25s;}
+  .toast.show{opacity:1;}
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <div class="statbar">
-    <div class="stat-chip">🔥 <span class="n" id="streakN">1</span>일 연속</div>
-    <div class="stat-chip">⭐ <span class="n" id="xpN">0</span> XP</div>
-    <div class="stat-chip">⏱ 약 15분</div>
+    <div class="stat-chip">🔥 <span id="streakN">0</span>일 연속</div>
+    <div class="stat-chip">⭐ <span id="xpN">0</span> XP</div>
+    <div class="stat-chip" id="dueChip" style="display:none">🔁 복습 <span id="dueN">0</span></div>
+    <button class="stat-chip" onclick="goTo(4)">📅 달력</button>
   </div>
 
   <div class="top">
-    <div class="date" id="dateLabel">DAY 1</div>
-    <h1 id="title">오늘의 영어 학습</h1>
-    <p id="subtitle">단어 · 숙어 퀴즈 + 대화 연습</p>
+    <div class="date" id="dateLabel"></div>
+    <h1>오늘의 영어 학습</h1>
+    <p id="subtitle"></p>
   </div>
 
   <div class="progress" id="progress"></div>
 
   <div id="screens">
 
-    <!-- Screen 0: Warm-up quiz (answer first, no reveal) -->
+    <!-- 0: Quiz -->
     <div class="screen active" data-idx="0">
       <div class="card">
         <span class="section-label">🧠 워밍업 퀴즈</span>
         <span class="qcount" id="qcount">1 / 5</span>
         <div style="clear:both"></div>
-        <span class="type-tag" id="qTypeTag"></span>
+        <span class="type-tag" id="qTypeTag"></span><span id="qRevBadge"></span>
         <div class="quiz-q" id="quizQ"></div>
         <div id="quizOpts"></div>
       </div>
@@ -139,31 +166,33 @@
         <button class="next-btn ghost" id="prevBtn" onclick="prevQ()">이전</button>
         <button class="next-btn" id="nextQBtn" onclick="nextQ()" disabled>다음</button>
       </div>
-      <p class="hint">정답을 몰라도 괜찮아요 — 먼저 감으로 풀어보세요. 채점과 설명은 다음 화면에서 한번에 확인해요.</p>
+      <p class="hint">정답을 몰라도 괜찮아요 — 먼저 감으로 풀어보세요.<br>채점과 풀이는 다 푼 다음에 한번에 확인해요.</p>
     </div>
 
-    <!-- Screen 1: Answers & review -->
+    <!-- 1: Review -->
     <div class="screen" data-idx="1">
       <div class="card">
-        <span class="section-label">✅ 정답 & 풀이</span>
+        <span class="section-label">✅ 정답 &amp; 풀이</span>
         <div id="reviewList"></div>
       </div>
-      <button class="next-btn show" onclick="goTo(2)">오늘의 대화 주제 보기 →</button>
+      <button class="next-btn" onclick="goTo(2)">오늘의 대화 주제 보기 →</button>
     </div>
 
-    <!-- Screen 2: Conversation prompt -->
+    <!-- 2: Talk -->
     <div class="screen" data-idx="2">
       <div class="card">
         <span class="section-label">💬 오늘의 대화 연습 (약 10분)</span>
         <div class="talk-topic" id="talkTopic"></div>
         <div class="talk-sub" id="talkIntro"></div>
         <div id="talkQs"></div>
-        <div class="talk-cta">👉 지금 이 채팅창에 오늘 배운 표현을 섞어서 영어로 자유롭게 답해보세요. 몇 마디 주고받고 나면, 제가 틀린 문법이나 더 자연스러운 표현을 정리해서 알려드릴게요.</div>
+        <a class="talk-btn" id="talkLink" href="#" target="_blank" rel="noopener">💬 Claude에서 이 주제로 대화 시작</a>
+        <button class="talk-btn sec" onclick="copyPrompt()">📋 대화 프롬프트 복사</button>
+        <div class="talk-hint">버튼을 누르면 Claude에 이 주제가 미리 입력된 새 대화가 열려요.<br>혹시 열리지 않으면 프롬프트를 복사해서 Claude 앱에 붙여넣으세요.</div>
       </div>
-      <button class="next-btn show" onclick="goTo(3)">오늘 학습 마무리 →</button>
+      <button class="next-btn ghost" onclick="goTo(3)">오늘 학습 마무리 →</button>
     </div>
 
-    <!-- Screen 3: Result -->
+    <!-- 3: Result -->
     <div class="screen" data-idx="3">
       <div class="card result">
         <div class="emoji" id="resultEmoji">🎉</div>
@@ -171,242 +200,617 @@
         <div class="result-stats">
           <div class="rstat"><div class="v" id="rScore">0/5</div><div class="l">정답</div></div>
           <div class="rstat"><div class="v" id="rXp">+0</div><div class="l">획득 XP</div></div>
-          <div class="rstat"><div class="v" id="rStreak">1일</div><div class="l">연속 학습</div></div>
+          <div class="rstat"><div class="v" id="rStreak">0일</div><div class="l">연속 학습</div></div>
         </div>
-        <p class="msg" id="resultMsg">퀴즈는 끝났지만, 대화 연습은 채팅에서 계속 이어가 보세요!</p>
-        <button class="restart-btn" onclick="goTo(0)">퀴즈 다시 풀어보기</button>
+        <p class="msg" id="resultMsg"></p>
+        <div class="btn-row">
+          <button class="restart-btn" onclick="goTo(4)">📅 달력 보기</button>
+          <button class="restart-btn" onclick="newRound()">🔄 새 문제 풀기</button>
+        </div>
       </div>
+    </div>
+
+    <!-- 4: Calendar -->
+    <div class="screen" data-idx="4">
+      <div class="card">
+        <span class="section-label">📅 학습 달력</span>
+        <div class="cal-head">
+          <div class="cal-title" id="calTitle"></div>
+          <div class="cal-nav">
+            <button onclick="shiftMonth(-1)">‹</button>
+            <button onclick="shiftMonth(1)">›</button>
+          </div>
+        </div>
+        <div class="cal-grid" id="calGrid"></div>
+        <div class="cal-legend">
+          <span><i class="lg-box" style="background:linear-gradient(160deg,#6D5BD0,#8B7FE8)"></i> 학습한 날</span>
+          <span><i class="lg-box" style="background:#FAF9FE;border:1px solid #EDEBF7"></i> 안 한 날</span>
+          <span><i class="lg-box" style="background:#fff;outline:2.5px solid #FF9F1C;outline-offset:-2.5px"></i> 오늘</span>
+        </div>
+        <div class="cal-summary">
+          <div class="rstat"><div class="v" id="calTotal">0</div><div class="l">총 학습일</div></div>
+          <div class="rstat"><div class="v" id="calMonth">0</div><div class="l">이번 달</div></div>
+          <div class="rstat"><div class="v" id="calBest">0</div><div class="l">최고 연속</div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="section-label">🔁 복습 대기 중</span>
+        <div class="weak-list" id="weakList"></div>
+      </div>
+
+      <button class="next-btn ghost" onclick="goTo(0)">← 퀴즈로 돌아가기</button>
     </div>
 
   </div>
 </div>
+<div class="toast" id="toast"></div>
 
 <script>
-/* ============ 오늘의 콘텐츠 (매일 이 부분만 교체) ============
-   items: 단어(word)와 숙어(idiom)를 섞어서 4~6개.
-   각 item: { type:'word'|'idiom', question, options[4], correctIndex, meaning, examples:[{en,ko}] }
-*/
-const DATA = {
-  dateLabel: "DAY 1",
-  streak: 1,
-  subtitle: "단어 · 숙어 퀴즈 + 대화 연습",
-  items: [
-    {
-      type: "idiom",
-      question: "빈칸에 가장 알맞은 표현은?\n\n\"I know you don't want to redo the slides, but we have to ___ and get it done before the meeting.\"",
-      options: ["bite the bullet", "touch base", "play it safe", "give it away"],
-      correctIndex: 0,
-      headline: "bite the bullet",
-      meaning: "(하기 싫지만) 마음먹고 해내다, 참고 견디다 — 반드시 \"bite\"라는 동사와 함께 쓰는 고정 표현이에요.",
-      examples: [
-        { en: "I finally bit the bullet and rewrote the whole report.", ko: "결국 마음먹고 보고서를 전부 다시 썼어요." },
-        { en: "You just have to bite the bullet and make the call.", ko: "그냥 마음 굳게 먹고 전화하는 수밖에 없어." }
-      ]
-    },
-    {
-      type: "word",
-      question: "\"I was wondering if you could take a look at this.\" 이 표현이 \"Can you look at this?\"보다 더 나은 이유는?",
-      options: ["문법이 더 간단해서", "더 정중하고 완곡해서", "더 짧아서", "뜻이 완전히 달라서"],
-      correctIndex: 1,
-      headline: "I was wondering if you could ...",
-      meaning: "정중하게 부탁할 때 쓰는 완곡 표현. \"Can you...\"보다 훨씬 부드럽고 격식 있게 들려요.",
-      examples: [
-        { en: "I was wondering if you could send me the updated file when you get a chance.", ko: "시간 되실 때 업데이트된 파일을 보내주실 수 있을지 여쭤봐도 될까요." },
-        { en: "I was wondering if you could clarify point three in your email.", ko: "이메일 세 번째 항목을 조금 더 설명해주실 수 있을지 궁금해요." }
-      ]
-    },
-    {
-      type: "word",
-      question: "\"Let's touch base next week.\"에서 touch base의 의미는?",
-      options: ["끝까지 싸우다", "짧게 연락해서 근황을 확인하다", "완전히 그만두다", "매우 화를 내다"],
-      correctIndex: 1,
-      headline: "touch base",
-      meaning: "짧게 연락하다, 근황을 확인하다 — 업무 이메일/미팅에서 자주 쓰는 표현이에요.",
-      examples: [
-        { en: "Let's touch base next week to see how the project is going.", ko: "다음 주에 짧게 연락해서 프로젝트가 어떻게 되고 있는지 확인해봐요." },
-        { en: "I'll touch base with you once I hear back from the client.", ko: "클라이언트한테 답이 오면 그때 다시 연락드릴게요." }
-      ]
-    },
-    {
-      type: "idiom",
-      question: "빈칸에 가장 알맞은 것은: \"She's been ___ under the weather lately, so she took a few days off.\"",
-      options: ["feeling", "getting", "taking", "staying"],
-      correctIndex: 0,
-      headline: "feeling under the weather",
-      meaning: "몸이 좀 안 좋다는 뜻의 관용구예요. 반드시 \"feeling\"과 짝을 이뤄 쓰고, \"getting\"은 쓰지 않아요.",
-      examples: [
-        { en: "I'm feeling a bit under the weather today, so I might leave early.", ko: "오늘 몸이 좀 안 좋아서 일찍 들어갈 수도 있어요." },
-        { en: "He's been under the weather since Monday.", ko: "그는 월요일부터 몸이 안 좋았어요." }
-      ]
-    },
-    {
-      type: "word",
-      question: "\"We don't have a fixed schedule — let's just play it by ear.\"에서 play it by ear의 의미는?",
-      options: ["악기를 연주하다", "미리 계획하지 않고 상황을 보며 결정하다", "귀담아듣다", "일정을 철저히 지키다"],
-      correctIndex: 1,
-      headline: "play it by ear",
-      meaning: "미리 계획하지 않고 상황을 보면서 즉흥적으로 결정하다.",
-      examples: [
-        { en: "I'm not sure what time we'll finish, so let's play it by ear.", ko: "몇 시에 끝날지 몰라서, 상황 봐가면서 하자." },
-        { en: "We don't have a fixed schedule — let's just play it by ear.", ko: "정해진 일정이 없으니까 그때그때 상황 봐서 결정하자." }
-      ]
-    }
-  ],
-  talk: {
-    topic: "\"A time you had to bite the bullet\"",
-    intro: "오늘 배운 표현을 활용해서, 하기 싫었지만 결국 마음먹고 해냈던 경험에 대해 이야기해봐요.",
-    questions: [
-      "What's something you had to \"bite the bullet\" and do recently?",
-      "How did you feel before and after doing it?",
-      "Would you do it differently next time?"
-    ]
-  }
-};
-/* ============================================================ */
+/* ============================================================
+   POOL — 문제 은행. 매일 예약 작업이 새 항목을 추가합니다.
+   들어올 때마다 이 중에서 랜덤 + 복습 우선으로 5문제를 뽑습니다.
+   ============================================================ */
+const POOL = [
+  { type:"idiom", headline:"bite the bullet",
+    question:"빈칸에 가장 알맞은 표현은?\n\n\"I know you don't want to redo the slides, but we have to ___ and get it done before the meeting.\"",
+    options:["bite the bullet","touch base","play it safe","give it away"], correctIndex:0,
+    meaning:"(하기 싫지만) 마음먹고 해내다, 참고 견디다 — 반드시 \"bite\"라는 동사와 함께 쓰는 고정 표현이에요.",
+    examples:[{en:"I finally bit the bullet and rewrote the whole report.",ko:"결국 마음먹고 보고서를 전부 다시 썼어요."},
+              {en:"You just have to bite the bullet and make the call.",ko:"그냥 마음 굳게 먹고 전화하는 수밖에 없어."}]},
 
-let qi = 0;
-let picked = new Array(DATA.items.length).fill(null);
-let current = 0;
-let earnedXP = 0;
+  { type:"word", headline:"I was wondering if you could ...",
+    question:"\"I was wondering if you could take a look at this.\"가 \"Can you look at this?\"보다 나은 이유는?",
+    options:["문법이 더 간단해서","더 정중하고 완곡해서","더 짧아서","뜻이 완전히 달라서"], correctIndex:1,
+    meaning:"정중하게 부탁할 때 쓰는 완곡 표현. \"Can you...\"보다 훨씬 부드럽고 격식 있게 들려요. 업무 이메일에서 특히 유용해요.",
+    examples:[{en:"I was wondering if you could send me the updated file when you get a chance.",ko:"시간 되실 때 업데이트된 파일을 보내주실 수 있을까요."},
+              {en:"I was wondering if you could clarify point three in your email.",ko:"이메일 세 번째 항목을 조금 더 설명해주실 수 있을까요."}]},
 
+  { type:"word", headline:"touch base",
+    question:"\"Let's touch base next week.\"에서 touch base의 의미는?",
+    options:["끝까지 싸우다","짧게 연락해서 근황을 확인하다","완전히 그만두다","크게 화를 내다"], correctIndex:1,
+    meaning:"짧게 연락하다, 근황을 확인하다 — 업무 이메일·미팅에서 자주 쓰는 표현이에요.",
+    examples:[{en:"Let's touch base next week to see how the project is going.",ko:"다음 주에 짧게 연락해서 프로젝트 진행 상황을 확인해봐요."},
+              {en:"I'll touch base with you once I hear back from the client.",ko:"클라이언트에서 답이 오면 다시 연락드릴게요."}]},
+
+  { type:"idiom", headline:"feeling under the weather",
+    question:"빈칸에 알맞은 것은: \"She's been ___ under the weather lately, so she took a few days off.\"",
+    options:["feeling","getting","taking","staying"], correctIndex:0,
+    meaning:"몸이 좀 안 좋다는 뜻의 관용구. 반드시 \"feeling\"과 짝을 이뤄 쓰고 \"getting\"은 쓰지 않아요 — 고정 collocation이에요.",
+    examples:[{en:"I'm feeling a bit under the weather today, so I might leave early.",ko:"오늘 몸이 좀 안 좋아서 일찍 들어갈 수도 있어요."},
+              {en:"He's been under the weather since Monday.",ko:"그는 월요일부터 몸이 안 좋았어요."}]},
+
+  { type:"idiom", headline:"play it by ear",
+    question:"\"We don't have a fixed schedule — let's just play it by ear.\"에서 play it by ear의 의미는?",
+    options:["악기를 연주하다","미리 계획하지 않고 상황을 보며 결정하다","남의 말을 귀담아듣다","일정을 철저히 지키다"], correctIndex:1,
+    meaning:"미리 계획하지 않고 상황을 보면서 즉흥적으로 결정하다.",
+    examples:[{en:"I'm not sure what time we'll finish, so let's play it by ear.",ko:"몇 시에 끝날지 몰라서, 상황 봐가면서 하자."},
+              {en:"We'll play it by ear depending on the weather.",ko:"날씨에 따라 그때그때 정하죠."}]},
+
+  { type:"idiom", headline:"get to the bottom of",
+    question:"빈칸에 알맞은 것은: \"There's a 1-won difference again. I need to ___ the bottom of this.\"",
+    options:["get to","go on","take up","put out"], correctIndex:0,
+    meaning:"(문제의) 원인을 끝까지 밝혀내다. \"get to the bottom of + 문제\" 형태로 고정돼 있어요. 버그·오류 원인을 추적할 때 딱 맞는 표현이에요.",
+    examples:[{en:"It took us two days to get to the bottom of the settlement error.",ko:"정산 오류의 원인을 밝혀내는 데 이틀이 걸렸어요."},
+              {en:"I want to get to the bottom of why this keeps happening.",ko:"왜 이게 계속 발생하는지 원인을 끝까지 파악하고 싶어요."}]},
+
+  { type:"idiom", headline:"a needle in a haystack",
+    question:"\"Finding that bug was like looking for a needle in a haystack.\"의 의미는?",
+    options:["매우 위험한 일이었다","찾기가 거의 불가능할 만큼 어려웠다","금방 끝났다","다른 사람이 대신 해줬다"], correctIndex:1,
+    meaning:"건초더미 속 바늘 — 찾기가 극도로 어려운 것. 보통 \"like looking for / finding a needle in a haystack\" 형태로 써요.",
+    examples:[{en:"With millions of rows, finding the mismatch was like a needle in a haystack.",ko:"수백만 행 중에서 불일치를 찾는 건 건초더미에서 바늘 찾기였어요."},
+              {en:"Without logs, debugging this is a needle in a haystack.",ko:"로그가 없으면 이걸 디버깅하는 건 바늘 찾기예요."}]},
+
+  { type:"idiom", headline:"back to square one",
+    question:"빈칸에 알맞은 것은: \"The fix didn't work, so we're ___ square one.\"",
+    options:["back to","back in","back on","back for"], correctIndex:0,
+    meaning:"원점으로 돌아가다, 처음부터 다시 시작하다. \"back to square one\"으로 전치사 to가 고정이에요.",
+    examples:[{en:"The patch broke something else, so we're back to square one.",ko:"패치가 다른 걸 망가뜨려서 원점으로 돌아갔어요."},
+              {en:"If this approach fails, it's back to square one.",ko:"이 방법이 실패하면 처음부터 다시예요."}]},
+
+  { type:"word", headline:"narrow down",
+    question:"\"We managed to narrow down the cause to two modules.\"에서 narrow down의 의미는?",
+    options:["범위를 좁히다","완전히 없애다","폭을 넓히다","보고하다"], correctIndex:0,
+    meaning:"(가능성·범위를) 좁히다. \"narrow down A to B\" — A를 B로 좁혔다는 형태로 자주 써요.",
+    examples:[{en:"I narrowed it down to a rounding issue in the tax calculation.",ko:"세금 계산의 반올림 문제로 범위를 좁혔어요."},
+              {en:"Let's narrow down the options before the meeting.",ko:"미팅 전에 선택지를 좀 줄여봐요."}]},
+
+  { type:"word", headline:"Would you mind + -ing",
+    question:"\"Would you mind ___ me the log file?\" 빈칸에 알맞은 형태는?",
+    options:["sending","to send","send","sent"], correctIndex:0,
+    meaning:"정중한 부탁 표현. \"Would you mind\" 뒤에는 반드시 동명사(-ing)가 와요 (to부정사 아님). 참고로 이 질문에 \"괜찮다\"고 답할 때는 \"No, not at all.\"처럼 부정으로 답해요.",
+    examples:[{en:"Would you mind reviewing this before I merge it?",ko:"머지하기 전에 이거 리뷰해주실 수 있을까요?"},
+              {en:"Would you mind holding off on the deploy for an hour?",ko:"배포를 한 시간 정도 미뤄주실 수 있을까요?"}]},
+
+  { type:"word", headline:"have been + -ing (현재완료진행)",
+    question:"\"나는 월요일부터 이 버그를 계속 보고 있어요.\"를 가장 자연스럽게 옮긴 것은?",
+    options:["I look at this bug since Monday.","I am looking at this bug since Monday.","I've been looking into this bug since Monday.","I looked this bug from Monday."], correctIndex:2,
+    meaning:"과거에 시작해서 지금까지 이어지는 일은 현재완료진행(have been -ing)으로 써요. since와 함께 쓸 때 현재형·현재진행형은 쓰지 않아요. 참고로 \"look into\"가 조사·조회의 뜻이라 버그 추적에 더 잘 맞아요.",
+    examples:[{en:"I've been working on the settlement system for about a year.",ko:"정산 시스템 일을 한 1년쯤 해왔어요."},
+              {en:"We've been getting this error since the last release.",ko:"지난 배포 이후로 이 에러가 계속 나고 있어요."}]},
+
+  { type:"idiom", headline:"on the same page",
+    question:"\"Let's make sure we're all on the same page before we start.\"의 의미는?",
+    options:["같은 책을 읽자","같은 이해·인식을 공유하자","같은 페이지를 인쇄하자","서로 경쟁하자"], correctIndex:1,
+    meaning:"서로 같은 이해·인식을 갖고 있다. 회의 시작이나 합의 확인할 때 아주 자주 써요.",
+    examples:[{en:"Just to make sure we're on the same page — the deadline is Friday, right?",ko:"확인차 여쭤보는데, 마감이 금요일 맞죠?"},
+              {en:"We weren't on the same page about the scope.",ko:"범위에 대해 서로 인식이 달랐어요."}]},
+
+  { type:"idiom", headline:"cut corners",
+    question:"\"We shouldn't cut corners on testing.\"에서 cut corners의 의미는?",
+    options:["시간·비용을 아끼려고 대충 하다","모퉁이를 자르다","우선순위를 정하다","완벽하게 마무리하다"], correctIndex:0,
+    meaning:"돈·시간·노력을 아끼려고 중요한 단계를 생략하고 대충 하다 — 부정적인 뉘앙스예요.",
+    examples:[{en:"If we cut corners now, we'll pay for it later.",ko:"지금 대충 하면 나중에 대가를 치를 거예요."},
+              {en:"They cut corners on QA and it showed.",ko:"QA를 대충 했더니 티가 났어요."}]},
+
+  { type:"idiom", headline:"call it a day",
+    question:"빈칸에 알맞은 것은: \"It's almost 9 p.m. — let's ___ it a day.\"",
+    options:["call","take","make","have"], correctIndex:0,
+    meaning:"(그날 일을) 여기서 마무리하다, 그만하고 퇴근하다. \"call it a day\"로 동사 call이 고정이에요.",
+    examples:[{en:"We fixed the main issue, so let's call it a day.",ko:"주요 문제는 해결했으니 오늘은 여기서 마무리하죠."},
+              {en:"I'm exhausted — calling it a day.",ko:"너무 피곤해서 오늘은 그만할게요."}]},
+
+  { type:"idiom", headline:"drop the ball",
+    question:"\"I dropped the ball on that email — sorry.\"의 의미는?",
+    options:["공을 떨어뜨렸다","실수로 챙기지 못했다, 놓쳤다","이메일을 삭제했다","다른 사람에게 넘겼다"], correctIndex:1,
+    meaning:"해야 할 일을 깜빡하거나 제대로 챙기지 못하다. 자기 실수를 솔직하게 인정할 때 자연스럽게 쓰는 표현이에요.",
+    examples:[{en:"I dropped the ball on following up with the vendor.",ko:"업체에 후속 연락하는 걸 제가 놓쳤어요."},
+              {en:"Sorry, I dropped the ball on this one.",ko:"죄송해요, 이건 제가 챙기지 못했어요."}]},
+
+  { type:"word", headline:"follow up on",
+    question:"\"Could you ___ up on the ticket I sent yesterday?\" 빈칸에 알맞은 것은?",
+    options:["follow","catch","take","look"], correctIndex:0,
+    meaning:"(이전에 얘기한 것에 대해) 후속 조치를 하거나 다시 확인하다. \"follow up on + 대상\" 형태로 써요. 재촉을 정중하게 표현할 때 유용해요.",
+    examples:[{en:"I'm just following up on my previous email.",ko:"이전에 보낸 메일 관련해서 다시 연락드립니다."},
+              {en:"I'll follow up on this after the standup.",ko:"스탠드업 끝나고 이건 다시 확인할게요."}]},
+
+  { type:"word", headline:"reach out to",
+    question:"\"I'll reach out to the finance team.\"에서 reach out to의 의미는?",
+    options:["손을 뻗다","(먼저) 연락을 취하다","항의하다","무시하다"], correctIndex:1,
+    meaning:"(도움·정보를 얻으려고) 먼저 연락하다. contact보다 부드럽고 협조적인 느낌이에요.",
+    examples:[{en:"Feel free to reach out to me if anything looks off.",ko:"뭔가 이상하면 언제든 연락 주세요."},
+              {en:"I reached out to the vendor but haven't heard back.",ko:"업체에 연락했는데 답이 없어요."}]},
+
+  { type:"word", headline:"run into (a problem)",
+    question:"\"I ___ into a weird rounding issue today.\" 빈칸에 알맞은 것은?",
+    options:["ran","run","running","runs"], correctIndex:0,
+    meaning:"(문제·사람을) 우연히 마주치다. 문제를 만났을 때 \"run into a problem/issue/bug\"로 아주 자주 써요. 과거형은 ran.",
+    examples:[{en:"We ran into an issue with the currency conversion.",ko:"환전 처리에서 문제가 생겼어요."},
+              {en:"If you run into anything, just ping me.",ko:"문제 생기면 바로 알려주세요."}]},
+
+  { type:"word", headline:"a junior developer (관사)",
+    question:"\"저는 아직 1년차 주니어 개발자예요.\"를 가장 자연스럽게 옮긴 것은?",
+    options:["I'm still junior developer who worked 1 year.","I'm still a junior developer who's worked for about a year.","I'm still the junior developer that work 1 year.","I still junior developer working 1 year."], correctIndex:1,
+    meaning:"직업·신분을 말할 때는 관사 a/an이 꼭 필요해요 (a junior developer). 사람을 가리킬 때는 that보다 who가 자연스럽고, 기간 앞에는 for를 붙여요 (for about a year).",
+    examples:[{en:"She's a backend engineer at a fintech company.",ko:"그녀는 핀테크 회사의 백엔드 엔지니어예요."},
+              {en:"I've been a developer for about a year now.",ko:"개발자로 일한 지 이제 1년쯤 됐어요."}]},
+
+  { type:"word", headline:"workaround",
+    question:"\"For now we're using a workaround.\"에서 workaround의 의미는?",
+    options:["근본적 해결책","임시 우회 방법","작업 순서","야근"], correctIndex:1,
+    meaning:"근본 원인을 고치지 않고 문제를 피해가는 임시 방편. 명사로 한 단어(workaround)로 붙여 써요.",
+    examples:[{en:"It's not a real fix, just a workaround for now.",ko:"진짜 해결은 아니고 지금은 임시 방편이에요."},
+              {en:"We found a workaround until the vendor patches it.",ko:"업체가 패치할 때까지 쓸 우회 방법을 찾았어요."}]},
+
+  { type:"word", headline:"Could you possibly ...?",
+    question:"업무 메일에서 마감을 정중하게 재촉할 때 가장 적절한 표현은?",
+    options:["Send it immediately please.","Hurry up and send it.","Could you possibly send it over by Thursday?","You need to do this now."], correctIndex:2,
+    meaning:"\"Could you possibly ...?\"는 부담을 최소화하는 아주 정중한 요청 표현이에요. 영어권 업무 커뮤니케이션에서는 명령형보다 이런 완곡 표현이 예의로 통해요.",
+    examples:[{en:"Could you possibly take a look before end of day?",ko:"혹시 오늘 중으로 확인해주실 수 있을까요?"},
+              {en:"Could you possibly share the raw data as well?",ko:"혹시 원본 데이터도 함께 공유해주실 수 있을까요?"}]},
+
+  { type:"idiom", headline:"in the loop",
+    question:"빈칸에 알맞은 것은: \"Please keep me ___ the loop on this.\"",
+    options:["in","on","at","with"], correctIndex:0,
+    meaning:"관련 정보를 계속 공유받는 상태. \"keep someone in the loop\"로 전치사 in이 고정이에요. 반대는 out of the loop.",
+    examples:[{en:"Keep me in the loop if anything changes.",ko:"변경사항 있으면 계속 알려주세요."},
+              {en:"Sorry, I've been out of the loop this week.",ko:"죄송해요, 이번 주에 상황을 못 따라갔어요."}]},
+
+  { type:"word", headline:"roll out",
+    question:"\"We're rolling out the new system next month.\"에서 roll out의 의미는?",
+    options:["철수하다","(단계적으로) 출시·도입하다","되돌리다","교육하다"], correctIndex:1,
+    meaning:"새 제품·시스템을 (단계적으로) 출시하거나 도입하다. 되돌리는 것은 roll back이니 헷갈리지 마세요.",
+    examples:[{en:"We'll roll it out to a small group first.",ko:"먼저 소규모 그룹에 적용해볼 거예요."},
+              {en:"The deploy broke things, so we rolled it back.",ko:"배포가 문제를 일으켜서 롤백했어요."}]},
+
+  { type:"idiom", headline:"take it with a grain of salt",
+    question:"\"Take those numbers with a grain of salt.\"의 의미는?",
+    options:["숫자를 그대로 믿어라","전적으로 신뢰하지 말고 걸러 들어라","소금을 넣어라","숫자를 다시 계산하라"], correctIndex:1,
+    meaning:"완전히 믿지 말고 어느 정도 의심하며 받아들이다. \"a grain of salt\"로 고정된 표현이에요.",
+    examples:[{en:"The estimate is rough, so take it with a grain of salt.",ko:"추정치가 대략적이라 참고만 하세요."},
+              {en:"I'd take that report with a grain of salt.",ko:"그 보고서는 좀 걸러서 보는 게 좋겠어요."}]}
+];
+
+/* ============================================================
+   TOPICS — 대화 주제 은행. 들어올 때마다 랜덤으로 하나.
+   ============================================================ */
+const TOPICS = [
+  { topic:"A time you had to bite the bullet",
+    intro:"하기 싫었지만 결국 마음먹고 해냈던 경험에 대해 이야기해봐요.",
+    questions:["What's something you had to \"bite the bullet\" and do recently?",
+               "How did you feel before and after doing it?",
+               "Would you do it differently next time?"]},
+  { topic:"The trickiest bug you've ever chased",
+    intro:"가장 골치 아팠던 버그나 오류를 추적한 경험을 나눠봐요.",
+    questions:["What was the hardest bug you've had to get to the bottom of?",
+               "How did you finally narrow down the cause?",
+               "What would you do differently if it happened again?"]},
+  { topic:"How you recharge after a stressful week",
+    intro:"스트레스가 심한 주를 보낸 뒤 어떻게 회복하는지 이야기해봐요.",
+    questions:["What do you usually do to unwind after a long week?",
+               "Has that changed since you started working?",
+               "Is there something you'd like to do more of on weekends?"]},
+  { topic:"A skill you want to get good at this year",
+    intro:"올해 꼭 익히고 싶은 기술이나 능력에 대해 이야기해봐요.",
+    questions:["What skill are you hoping to improve this year, and why?",
+               "How are you planning to practice it?",
+               "What's been the biggest obstacle so far?"]},
+  { topic:"Working with people more senior than you",
+    intro:"나보다 경험 많은 사람들과 일하면서 느낀 점을 나눠봐요.",
+    questions:["What's it like working with senior developers on your team?",
+               "What's the most useful thing you've learned from them?",
+               "Is there anything you find difficult about asking for help?"]},
+  { topic:"A place you'd love to travel to next",
+    intro:"다음에 가보고 싶은 여행지에 대해 이야기해봐요.",
+    questions:["Where would you love to travel next, and what draws you to it?",
+               "Would you rather plan every detail or play it by ear?",
+               "What's the best trip you've taken so far?"]},
+  { topic:"Something that changed your mind recently",
+    intro:"최근에 생각이 바뀐 일에 대해 이야기해봐요.",
+    questions:["Has anything changed your mind recently — big or small?",
+               "What made you reconsider?",
+               "Do you find it easy or hard to admit you were wrong?"]},
+  { topic:"Your ideal way to start the morning",
+    intro:"이상적인 아침 루틴에 대해 가볍게 이야기해봐요.",
+    questions:["What does your ideal morning look like?",
+               "How close is your actual morning to that?",
+               "Are you a morning person or a night owl?"]}
+];
+
+/* ============================================================
+   저장소 (이 기기에만 저장)
+   ============================================================ */
+const LS_DAYS = "enq_days";
+const LS_XP   = "enq_xp";
+const LS_SRS  = "enq_srs";
+
+// 간격 반복: 맞히면 다음 복습이 점점 멀어지고, 틀리면 다시 1단계로.
+const INTERVALS = [1, 3, 7, 16, 35];   // 단계별 다음 복습까지 일수
+
+function lsGet(k, f){ try{ const v=localStorage.getItem(k); return v?JSON.parse(v):f; }catch(e){ return f; } }
+function lsSet(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+function dayKey(d){
+  d = d || new Date();
+  return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,'0')+"-"+String(d.getDate()).padStart(2,'0');
+}
+function daysFromNow(n){ const d=new Date(); d.setDate(d.getDate()+n); return dayKey(d); }
+function daysBetween(a, b){
+  return Math.round((new Date(b+"T00:00:00") - new Date(a+"T00:00:00"))/86400000);
+}
+function computeStreak(days){
+  let n=0; const d=new Date();
+  if(!days[dayKey(d)]) d.setDate(d.getDate()-1);
+  while(days[dayKey(d)]){ n++; d.setDate(d.getDate()-1); }
+  return n;
+}
+function computeBestStreak(days){
+  const keys = Object.keys(days).sort();
+  let best=0, run=0, prev=null;
+  keys.forEach(k=>{
+    run = (prev && daysBetween(prev,k)===1) ? run+1 : 1;
+    best = Math.max(best, run); prev = k;
+  });
+  return best;
+}
+
+function recordAnswer(headline, correct){
+  const srs = lsGet(LS_SRS, {});
+  const r = srs[headline] || { box:0, wrong:0, right:0 };
+  if(correct){ r.box = Math.min(r.box + 1, INTERVALS.length); r.right++; }
+  else { r.box = 1; r.wrong++; }
+  r.due = daysFromNow(INTERVALS[r.box - 1]);
+  r.last = dayKey();
+  srs[headline] = r;
+  lsSet(LS_SRS, srs);
+}
+function dueCount(){
+  const srs = lsGet(LS_SRS, {}), t = dayKey();
+  return Object.keys(srs).filter(h => srs[h].due && srs[h].due <= t).length;
+}
+
+/* ============================================================
+   라운드 구성 — 복습 우선 + 랜덤
+   ============================================================ */
+function shuffle(a){
+  a = a.slice();
+  for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+
+const ROUND_SIZE = 5;
+const MAX_REVIEW = 3;     // 한 라운드에 복습 문제 최대 개수
+let items = [], talk = null, reviewSet = new Set();
+let qi = 0, picked = [], current = 0, earnedXP = 0, correctCount = 0;
+let graded = false, savedToday = false;
+
+function buildRound(){
+  const srs = lsGet(LS_SRS, {}), today = dayKey();
+  const meta = POOL.map(x => ({ item:x, r: srs[x.headline] }));
+
+  // 1) 복습 시점이 된 것 — 많이 틀린 것 우선, 그다음 오래 기다린 것 우선
+  const due = meta.filter(o => o.r && o.r.due && o.r.due <= today)
+    .sort((a,b)=> (b.r.wrong - a.r.wrong) || (a.r.due < b.r.due ? -1 : 1));
+  // 2) 아직 한 번도 안 나온 것
+  const unseen = shuffle(meta.filter(o => !o.r));
+  // 3) 나머지 (이미 맞혀서 아직 복습 시점이 안 된 것)
+  const later = shuffle(meta.filter(o => o.r && (!o.r.due || o.r.due > today)));
+
+  const reviewPart = due.slice(0, MAX_REVIEW);
+  reviewSet = new Set(reviewPart.map(o => o.item.headline));
+
+  let chosen = reviewPart.map(o => o.item);
+  [unseen, later, due.slice(MAX_REVIEW)].forEach(list=>{
+    list.forEach(o=>{ if(chosen.length < ROUND_SIZE && !chosen.includes(o.item)) chosen.push(o.item); });
+  });
+
+  items = shuffle(chosen).slice(0, ROUND_SIZE);
+  talk  = shuffle(TOPICS)[0];
+  qi = 0; picked = new Array(items.length).fill(null);
+  earnedXP = 0; correctCount = 0; graded = false; savedToday = false;
+}
+
+function newRound(){ buildRound(); renderQuizQuestion(); goTo(0); }
+
+/* ============================================================
+   화면
+   ============================================================ */
 function renderProgress(){
   const p = document.getElementById('progress');
-  p.innerHTML = '';
+  p.innerHTML='';
   for(let i=0;i<4;i++){
-    const d = document.createElement('div');
-    d.className = 'dot' + (i===current?' active':'') + (i<current?' done':'');
+    const d=document.createElement('div');
+    d.className='dot'+(i===current?' active':'')+(i<current?' done':'');
     p.appendChild(d);
   }
 }
-
 function goTo(idx){
   current = idx;
-  document.querySelectorAll('.screen').forEach(s=>{
-    s.classList.toggle('active', Number(s.dataset.idx)===idx);
-  });
+  document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active', Number(s.dataset.idx)===idx));
   renderProgress();
   if(idx===1) renderReview();
   if(idx===2) renderTalk();
-  if(idx===3){ showResult(); burstConfetti(); }
+  if(idx===3){ saveToday(); showResult(); burstConfetti(); }
+  if(idx===4){ renderCalendar(); renderWeakList(); }
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
 function renderQuizQuestion(){
-  const item = DATA.items[qi];
-  document.getElementById('qcount').textContent = (qi+1) + ' / ' + DATA.items.length;
+  const item = items[qi];
+  document.getElementById('qcount').textContent = (qi+1)+' / '+items.length;
   const tag = document.getElementById('qTypeTag');
-  tag.textContent = item.type === 'idiom' ? 'IDIOM 숙어' : 'WORD 표현';
-  tag.className = 'type-tag ' + item.type;
+  tag.textContent = item.type==='idiom' ? 'IDIOM 숙어' : 'WORD 표현';
+  tag.className = 'type-tag '+item.type;
+  document.getElementById('qRevBadge').innerHTML =
+    reviewSet.has(item.headline) ? '<span class="rev-badge">🔁 복습</span>' : '';
   document.getElementById('quizQ').textContent = item.question;
   const opts = document.getElementById('quizOpts');
-  opts.innerHTML = '';
-  item.options.forEach((opt, i)=>{
-    const btn = document.createElement('button');
-    btn.className = 'opt' + (picked[qi]===i ? ' picked' : '');
-    btn.textContent = opt;
-    btn.onclick = ()=>{
-      picked[qi] = i;
-      renderQuizQuestion();
-      document.getElementById('nextQBtn').disabled = false;
-    };
-    opts.appendChild(btn);
+  opts.innerHTML='';
+  item.options.forEach((o,i)=>{
+    const b=document.createElement('button');
+    b.className='opt'+(picked[qi]===i?' picked':'');
+    b.textContent=o;
+    b.onclick=()=>{ picked[qi]=i; renderQuizQuestion(); };
+    opts.appendChild(b);
   });
   document.getElementById('prevBtn').disabled = (qi===0);
   document.getElementById('nextQBtn').disabled = (picked[qi]===null);
-  document.getElementById('nextQBtn').textContent = (qi === DATA.items.length-1) ? '채점하기' : '다음';
+  document.getElementById('nextQBtn').textContent = (qi===items.length-1) ? '채점하기' : '다음';
 }
-
 function prevQ(){ if(qi>0){ qi--; renderQuizQuestion(); } }
-function nextQ(){
-  if(qi < DATA.items.length-1){ qi++; renderQuizQuestion(); }
-  else { goTo(1); }
-}
+function nextQ(){ if(qi<items.length-1){ qi++; renderQuizQuestion(); } else goTo(1); }
 
 function renderReview(){
   const list = document.getElementById('reviewList');
-  list.innerHTML = '';
-  let correctCount = 0;
-  DATA.items.forEach((item, i)=>{
-    const isCorrect = picked[i] === item.correctIndex;
-    if(isCorrect) correctCount++;
-    const div = document.createElement('div');
-    div.className = 'review-item';
-    let answersHtml = '';
-    if(picked[i] !== null && picked[i] !== item.correctIndex){
-      answersHtml += `<div class="review-tag you-wrong">내 답: ${item.options[picked[i]]}</div>`;
-    }
-    answersHtml += `<div class="review-tag ${isCorrect ? 'you-right' : 'answer'}">${isCorrect ? '✔ 내 답 (정답!)' : '정답'}: ${item.options[item.correctIndex]}</div>`;
-    div.innerHTML = `
-      <span class="type-tag ${item.type}">${item.type==='idiom'?'IDIOM 숙어':'WORD 표현'} · ${item.headline}</span>
-      <div class="review-q">${item.question.replace(/\n/g,' ')}</div>
-      <div class="review-answers">${answersHtml}</div>
-      <div class="review-mean">${item.meaning}</div>
-      ${item.examples.map(x=>`<div class="review-ex"><div class="en">${x.en}</div><div class="ko">${x.ko}</div></div>`).join('')}
-    `;
+  list.innerHTML=''; correctCount=0;
+  items.forEach((item,i)=>{
+    const ok = picked[i]===item.correctIndex;
+    if(ok) correctCount++;
+    if(!graded) recordAnswer(item.headline, ok);
+    const srs = lsGet(LS_SRS, {})[item.headline] || {};
+    const gap = srs.due ? Math.max(0, daysBetween(dayKey(), srs.due)) : null;
+    let a='';
+    if(picked[i]!==null && !ok) a += '<div class="review-tag you-wrong">내 답: '+item.options[picked[i]]+'</div>';
+    a += '<div class="review-tag '+(ok?'you-right':'answer')+'">'+(ok?'✔ 내 답 (정답!)':'정답')+': '+item.options[item.correctIndex]+'</div>';
+    const note = gap===null ? '' :
+      '<div class="srs-note">'+(ok
+        ? '🔁 잘 외웠어요 — 약 '+gap+'일 뒤에 다시 확인용으로 나올 거예요.'
+        : '🔁 틀린 문제라 복습 대기로 넣었어요 — 약 '+gap+'일 뒤 다시 나와요.')+'</div>';
+    const div=document.createElement('div');
+    div.className='review-item';
+    div.innerHTML =
+      '<span class="type-tag '+item.type+'">'+(item.type==='idiom'?'IDIOM 숙어':'WORD 표현')+' · '+item.headline+'</span>'+
+      (reviewSet.has(item.headline)?'<span class="rev-badge">🔁 복습</span>':'')+
+      '<div class="review-q">'+item.question.replace(/\n/g,' ')+'</div>'+
+      '<div class="review-answers">'+a+'</div>'+
+      '<div class="review-mean">'+item.meaning+'</div>'+
+      item.examples.map(x=>'<div class="review-ex"><div class="en">'+x.en+'</div><div class="ko">'+x.ko+'</div></div>').join('')+
+      note;
     list.appendChild(div);
   });
-  earnedXP = correctCount * 10 + (DATA.items.length===correctCount ? 20 : 0);
-  window.__correctCount = correctCount;
+  graded = true;
+  earnedXP = correctCount*10 + (correctCount===items.length ? 20 : 0);
+  refreshStatbar();
 }
 
+/* --- 대화 연습: Claude 딥링크 + 프롬프트 복사 --- */
+// URL 길이를 줄이려고 영어로 작성 (한글은 URL 인코딩 시 글자당 9바이트)
+function buildTalkPrompt(){
+  return 'English conversation practice. Topic: "'+talk.topic+'"\n'+
+    'Starter questions: '+talk.questions.join(' / ')+'\n\n'+
+    "I'm a Korean learner aiming for upper-intermediate English. Be my conversation partner on this topic.\n"+
+    'Rules: (1) Reply in English, 2-3 sentences, then ask me a follow-up question. '+
+    "(2) Don't correct my grammar during the conversation - just keep it flowing. "+
+    '(3) After about 4-5 exchanges, or when I say "done", list 3-5 of my awkward or incorrect sentences '+
+    'as "original -> more natural version", and explain why in Korean. '+
+    'Pay special attention to missing articles (a/an/the), verb tenses (especially present perfect), '+
+    'and phrases translated too literally from Korean.\n\n'+
+    'Please start by asking me your first question!';
+}
 function renderTalk(){
-  document.getElementById('talkTopic').textContent = DATA.talk.topic;
-  document.getElementById('talkIntro').textContent = DATA.talk.intro;
+  document.getElementById('talkTopic').textContent = talk.topic;
+  document.getElementById('talkIntro').textContent = talk.intro;
   const qs = document.getElementById('talkQs');
-  qs.innerHTML = '';
-  DATA.talk.questions.forEach(q=>{
-    const d = document.createElement('div');
-    d.className = 'talk-q';
-    d.textContent = '· ' + q;
-    qs.appendChild(d);
+  qs.innerHTML='';
+  talk.questions.forEach(q=>{
+    const d=document.createElement('div'); d.className='talk-q'; d.textContent='· '+q; qs.appendChild(d);
   });
+  document.getElementById('talkLink').href =
+    'https://claude.ai/new?q=' + encodeURIComponent(buildTalkPrompt());
+}
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2200);
+}
+function copyPrompt(){
+  const text = buildTalkPrompt();
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(
+      ()=>showToast('프롬프트를 복사했어요! Claude에 붙여넣으세요'),
+      ()=>fallbackCopy(text));
+  } else fallbackCopy(text);
+}
+function fallbackCopy(text){
+  const ta=document.createElement('textarea');
+  ta.value=text; ta.style.position='fixed'; ta.style.opacity='0';
+  document.body.appendChild(ta); ta.select();
+  try{ document.execCommand('copy'); showToast('프롬프트를 복사했어요!'); }
+  catch(e){ showToast('복사에 실패했어요 — 길게 눌러 직접 복사해주세요'); }
+  document.body.removeChild(ta);
 }
 
+function saveToday(){
+  if(savedToday) return;
+  savedToday = true;
+  const days = lsGet(LS_DAYS, {}), k = dayKey(), prev = days[k];
+  days[k] = {
+    xp: (prev?prev.xp:0) + earnedXP,
+    score: Math.max(prev?prev.score:0, correctCount),
+    total: items.length,
+    rounds: (prev?(prev.rounds||1):0) + 1
+  };
+  lsSet(LS_DAYS, days);
+  lsSet(LS_XP, lsGet(LS_XP,0) + earnedXP);
+  refreshStatbar();
+}
+function refreshStatbar(){
+  const days = lsGet(LS_DAYS, {});
+  document.getElementById('streakN').textContent = computeStreak(days);
+  document.getElementById('xpN').textContent = lsGet(LS_XP, 0);
+  const n = dueCount();
+  document.getElementById('dueChip').style.display = n>0 ? 'flex' : 'none';
+  document.getElementById('dueN').textContent = n;
+}
 function showResult(){
-  const correctCount = window.__correctCount || 0;
-  document.getElementById('rScore').textContent = correctCount + '/' + DATA.items.length;
-  document.getElementById('rXp').textContent = '+' + earnedXP;
-  document.getElementById('rStreak').textContent = DATA.streak + '일';
-  document.getElementById('xpN').textContent = earnedXP;
-  const emoji = document.getElementById('resultEmoji');
-  const title = document.getElementById('resultTitle');
-  const msg = document.getElementById('resultMsg');
-  if(correctCount === DATA.items.length){
-    emoji.textContent = '🏆'; title.textContent = '완벽해요!';
-    msg.textContent = '오늘 표현을 전부 맞혔어요. 대화 연습까지 마무리하면 오늘 학습 끝!';
-  } else if(correctCount >= Math.ceil(DATA.items.length/2)){
-    emoji.textContent = '🎉'; title.textContent = '오늘도 잘했어요!';
-    msg.textContent = '틀린 부분은 위 풀이에서 다시 확인해보세요. 대화 연습도 잊지 마세요!';
+  const days = lsGet(LS_DAYS, {});
+  document.getElementById('rScore').textContent = correctCount+'/'+items.length;
+  document.getElementById('rXp').textContent = '+'+earnedXP;
+  document.getElementById('rStreak').textContent = computeStreak(days)+'일';
+  const e=document.getElementById('resultEmoji'), t=document.getElementById('resultTitle'), m=document.getElementById('resultMsg');
+  if(correctCount===items.length){
+    e.textContent='🏆'; t.textContent='완벽해요!';
+    m.textContent='오늘 문제를 전부 맞혔어요. 맞힌 표현은 점점 긴 간격으로 다시 나와서 자연스럽게 복습돼요.';
+  } else if(correctCount >= Math.ceil(items.length/2)){
+    e.textContent='🎉'; t.textContent='잘했어요!';
+    m.textContent='틀린 문제는 복습 대기에 들어갔어요. 며칠 뒤 잊어버릴 만할 때 다시 나올 거예요.';
   } else {
-    emoji.textContent = '💪'; title.textContent = '오늘도 완료!';
-    msg.textContent = '틀린 것도 학습 과정이에요. 위 풀이를 한 번 더 읽어보고, 대화 연습으로 이어가 봐요.';
+    e.textContent='💪'; t.textContent='오늘도 완료!';
+    m.textContent='틀린 것도 학습 과정이에요. 틀린 문제는 내일부터 우선적으로 다시 나와요.';
   }
+}
+
+/* --- 달력 --- */
+let calYear, calMonth;
+function shiftMonth(d){
+  calMonth += d;
+  if(calMonth<0){ calMonth=11; calYear--; }
+  if(calMonth>11){ calMonth=0; calYear++; }
+  renderCalendar();
+}
+function renderCalendar(){
+  const days = lsGet(LS_DAYS, {});
+  if(calYear===undefined){ const n=new Date(); calYear=n.getFullYear(); calMonth=n.getMonth(); }
+  document.getElementById('calTitle').textContent = calYear+'년 '+(calMonth+1)+'월';
+  const grid=document.getElementById('calGrid'); grid.innerHTML='';
+  ['일','월','화','수','목','금','토'].forEach((d,i)=>{
+    const el=document.createElement('div'); el.className='cal-dow'+(i===0?' sun':''); el.textContent=d; grid.appendChild(el);
+  });
+  const first=new Date(calYear,calMonth,1).getDay();
+  const total=new Date(calYear,calMonth+1,0).getDate();
+  const todayK=dayKey();
+  for(let i=0;i<first;i++){ const e=document.createElement('div'); e.className='cal-cell empty'; grid.appendChild(e); }
+  let monthCount=0;
+  for(let d=1; d<=total; d++){
+    const k=calYear+'-'+String(calMonth+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
+    const rec=days[k];
+    if(rec) monthCount++;
+    const cell=document.createElement('div');
+    cell.className='cal-cell'+(rec?' done':'')+(k===todayK?' today':'');
+    cell.innerHTML='<div>'+d+'</div>'+(rec?'<div class="mark">'+rec.score+'/'+rec.total+'</div>':'');
+    if(rec) cell.title=k+' · '+rec.score+'/'+rec.total+' 정답 · '+rec.xp+' XP';
+    grid.appendChild(cell);
+  }
+  document.getElementById('calTotal').textContent = Object.keys(days).length;
+  document.getElementById('calMonth').textContent = monthCount;
+  document.getElementById('calBest').textContent = computeBestStreak(days);
+}
+function renderWeakList(){
+  const srs = lsGet(LS_SRS, {}), today = dayKey();
+  const rows = Object.keys(srs)
+    .map(h => ({ h, r: srs[h] }))
+    .filter(o => o.r.wrong > 0 || (o.r.due && o.r.due <= today))
+    .sort((a,b)=> (b.r.wrong - a.r.wrong) || (a.r.due < b.r.due ? -1 : 1))
+    .slice(0, 12);
+  const box = document.getElementById('weakList');
+  if(!rows.length){
+    box.innerHTML = '<div class="weak-row"><span class="m">아직 복습 대기 중인 표현이 없어요. 퀴즈를 풀면 여기에 쌓여요.</span></div>';
+    return;
+  }
+  box.innerHTML = rows.map(o=>{
+    const gap = o.r.due ? daysBetween(today, o.r.due) : null;
+    const when = gap===null ? '' : (gap<=0 ? '지금 복습 가능' : gap+'일 뒤');
+    return '<div class="weak-row"><span class="h">'+o.h+'</span>'+
+           '<span class="m">'+(o.r.wrong?'✗'+o.r.wrong+' ':'')+when+'</span></div>';
+  }).join('');
 }
 
 function burstConfetti(){
-  const emojis = ['🎉','✨','🙌','⭐','💫'];
+  const em=['🎉','✨','🙌','⭐','💫'];
   for(let i=0;i<16;i++){
-    const el = document.createElement('div');
-    el.className = 'confetti';
-    el.textContent = emojis[Math.floor(Math.random()*emojis.length)];
-    el.style.left = Math.random()*100 + 'vw';
-    el.style.animationDuration = (2.2 + Math.random()*1.4) + 's';
-    el.style.fontSize = (14 + Math.random()*14) + 'px';
+    const el=document.createElement('div');
+    el.className='confetti'; el.textContent=em[Math.floor(Math.random()*em.length)];
+    el.style.left=Math.random()*100+'vw';
+    el.style.animationDuration=(2.2+Math.random()*1.4)+'s';
+    el.style.fontSize=(14+Math.random()*14)+'px';
     document.body.appendChild(el);
-    setTimeout(()=>el.remove(), 4000);
+    setTimeout(()=>el.remove(),4000);
   }
 }
 
-document.getElementById('dateLabel').textContent = DATA.dateLabel;
-document.getElementById('subtitle').textContent = DATA.subtitle;
-document.getElementById('streakN').textContent = DATA.streak;
-renderQuizQuestion();
-renderProgress();
+(function init(){
+  const n=new Date();
+  document.getElementById('dateLabel').textContent =
+    n.getFullYear()+'.'+String(n.getMonth()+1).padStart(2,'0')+'.'+String(n.getDate()).padStart(2,'0');
+  document.getElementById('subtitle').textContent =
+    '문제 '+POOL.length+'개 중 랜덤 '+ROUND_SIZE+'문항 · 틀린 문제는 자동 복습';
+  refreshStatbar();
+  buildRound();
+  renderQuizQuestion();
+  renderProgress();
+})();
 
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js').catch(()=>{});
-  });
+if('serviceWorker' in navigator){
+  window.addEventListener('load', ()=>{ navigator.serviceWorker.register('./sw.js').catch(()=>{}); });
 }
 </script>
 </body>

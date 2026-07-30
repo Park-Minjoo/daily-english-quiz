@@ -1,19 +1,42 @@
 {
-  "note": "매일 자동 업데이트 기록. 같은 표현/주제가 반복되지 않도록 참고용으로 사용됩니다.",
-  "lastDay": 1,
-  "lastStreak": 1,
-  "entries": [
-    {
-      "day": 1,
-      "date": "2026-07-29",
-      "topic": "A time you had to bite the bullet",
-      "items": [
-        "bite the bullet",
-        "I was wondering if you could ...",
-        "touch base",
-        "feeling under the weather",
-        "play it by ear"
-      ]
-    }
+  "note": "매일 예약 작업이 POOL/TOPICS에 새 항목을 추가한 기록입니다. 중복 출제를 막기 위해 참고용으로 사용됩니다.",
+  "poolHeadlines": [
+    "bite the bullet",
+    "I was wondering if you could ...",
+    "touch base",
+    "feeling under the weather",
+    "play it by ear",
+    "get to the bottom of",
+    "a needle in a haystack",
+    "back to square one",
+    "narrow down",
+    "Would you mind + -ing",
+    "have been + -ing (현재완료진행)",
+    "on the same page",
+    "cut corners",
+    "call it a day",
+    "drop the ball",
+    "follow up on",
+    "reach out to",
+    "run into (a problem)",
+    "a junior developer (관사)",
+    "workaround",
+    "Could you possibly ...?",
+    "in the loop",
+    "roll out",
+    "take it with a grain of salt"
+  ],
+  "topics": [
+    "A time you had to bite the bullet",
+    "The trickiest bug you've ever chased",
+    "How you recharge after a stressful week",
+    "A skill you want to get good at this year",
+    "Working with people more senior than you",
+    "A place you'd love to travel to next",
+    "Something that changed your mind recently",
+    "Your ideal way to start the morning"
+  ],
+  "log": [
+    { "date": "2026-07-30", "addedItems": 24, "addedTopics": 8, "note": "초기 구축 — 간격 반복 복습 + 학습 달력 도입" }
   ]
 }
