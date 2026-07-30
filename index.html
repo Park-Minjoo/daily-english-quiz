@@ -423,7 +423,35 @@ const POOL = [
     options:["숫자를 그대로 믿어라","전적으로 신뢰하지 말고 걸러 들어라","소금을 넣어라","숫자를 다시 계산하라"], correctIndex:1,
     meaning:"완전히 믿지 말고 어느 정도 의심하며 받아들이다. \"a grain of salt\"로 고정된 표현이에요.",
     examples:[{en:"The estimate is rough, so take it with a grain of salt.",ko:"추정치가 대략적이라 참고만 하세요."},
-              {en:"I'd take that report with a grain of salt.",ko:"그 보고서는 좀 걸러서 보는 게 좋겠어요."}]}
+              {en:"I'd take that report with a grain of salt.",ko:"그 보고서는 좀 걸러서 보는 게 좋겠어요."}]},
+
+  { type:"word", headline:"Would it be possible to ...?",
+    question:"회사 이메일에서 마감 연장을 정중하게 요청하는 표현으로 가장 적절한 것은?",
+    options:["Would it be possible to get an extension until Friday?","Give me more time.","I need more time now.","You must extend the deadline."], correctIndex:0,
+    meaning:"가능 여부를 조심스럽게 묻는 완곡 표현이에요. 명령형(Give me..., You must...)보다 훨씬 정중하게 들려서 업무 이메일에 적합해요.",
+    examples:[{en:"Would it be possible to get an extension until Friday?",ko:"금요일까지 기한을 연장할 수 있을까요?"},
+              {en:"Would it be possible to move our call to 3pm?",ko:"통화 시간을 3시로 옮길 수 있을까요?"}]},
+
+  { type:"word", headline:"the (문맥상 특정한 대상을 가리키는 정관사)",
+    question:"빈칸에 알맞은 것은: \"Can you check ___ error log I sent you yesterday?\"",
+    options:["a","an","the","(관사 없음)"], correctIndex:2,
+    meaning:"화자와 청자 모두 어떤 것을 말하는지 이미 알고 있는 특정 대상에는 정관사 the를 써요. 한국어에는 관사가 없어서 이런 the를 자주 빠뜨리게 되니 주의하세요.",
+    examples:[{en:"Can you check the error log I sent you yesterday?",ko:"어제 보내드린 그 에러 로그 확인해주실 수 있나요?"},
+              {en:"I fixed the bug we talked about this morning.",ko:"오늘 아침에 얘기했던 그 버그 고쳤어요."}]},
+
+  { type:"idiom", headline:"make a mistake",
+    question:"빈칸에 알맞은 동사는: \"Sorry, I think I ___ a mistake in the calculation.\"",
+    options:["made","did","had","took"], correctIndex:0,
+    meaning:"\"mistake\"는 반드시 \"make\"와 짝을 이루는 고정 collocation이에요 (make a mistake). 한국어 화자는 \"do a mistake\"라고 잘못 쓰기 쉬우니 주의하세요.",
+    examples:[{en:"I made a mistake in the settlement report.",ko:"정산 보고서에서 실수를 했어요."},
+              {en:"Everyone makes mistakes when they're learning something new.",ko:"새로운 걸 배울 때는 누구나 실수하기 마련이에요."}]},
+
+  { type:"idiom", headline:"keep track of",
+    question:"빈칸에 알맞은 것은: \"___ track of all the transactions is important in a settlement system.\"",
+    options:["Keeping","Making","Taking","Doing"], correctIndex:0,
+    meaning:"\"keep track of\"는 무언가를 계속 기록·파악하다라는 뜻의 고정 표현으로 반드시 \"keep\"과 짝을 이뤄요. 정산 시스템 업무와도 잘 어울리는 표현이에요.",
+    examples:[{en:"We use a dashboard to keep track of every transaction.",ko:"모든 거래를 파악하기 위해 대시보드를 사용해요."},
+              {en:"It's hard to keep track of so many edge cases.",ko:"이렇게 많은 예외 케이스를 다 파악하기가 어려워요."}]}
 ];
 
 /* ============================================================
@@ -469,7 +497,12 @@ const TOPICS = [
     intro:"이상적인 아침 루틴에 대해 가볍게 이야기해봐요.",
     questions:["What does your ideal morning look like?",
                "How close is your actual morning to that?",
-               "Are you a morning person or a night owl?"]}
+               "Are you a morning person or a night owl?"]},
+  { topic:"A dish you never get tired of",
+    intro:"질리지 않고 계속 먹을 수 있는 음식에 대해 이야기해봐요.",
+    questions:["What's a dish you could eat every single day and never get tired of?",
+               "Is it something you usually cook yourself or order?",
+               "What's a food you used to dislike but grew to love?"]}
 ];
 
 /* ============================================================

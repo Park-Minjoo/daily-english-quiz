@@ -24,7 +24,11 @@
     "Could you possibly ...?",
     "in the loop",
     "roll out",
-    "take it with a grain of salt"
+    "take it with a grain of salt",
+    "Would it be possible to ...?",
+    "the (문맥상 특정한 대상을 가리키는 정관사)",
+    "make a mistake",
+    "keep track of"
   ],
   "topics": [
     "A time you had to bite the bullet",
@@ -34,9 +38,11 @@
     "Working with people more senior than you",
     "A place you'd love to travel to next",
     "Something that changed your mind recently",
-    "Your ideal way to start the morning"
+    "Your ideal way to start the morning",
+    "A dish you never get tired of"
   ],
   "log": [
-    { "date": "2026-07-30", "addedItems": 24, "addedTopics": 8, "note": "초기 구축 — 간격 반복 복습 + 학습 달력 도입" }
+    { "date": "2026-07-30", "addedItems": 24, "addedTopics": 8, "note": "초기 구축 — 간격 반복 복습 + 학습 달력 도입" },
+    { "date": "2026-07-30", "addedItems": 4, "addedTopics": 1, "note": "완곡 표현(Would it be possible to), 정관사 the, collocation(make a mistake, keep track of) 보강 + 음식 주제 추가" }
   ]
 }
