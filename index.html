@@ -106,6 +106,8 @@
   .cal-dow.sun{color:#E5484D;}
   .cal-cell{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:11px;font-size:12.5px;font-weight:700;background:#FAF9FE;}
   .cal-cell.empty{background:transparent;}
+  .cal-cell.future{opacity:.35;}
+  .cal-cell:not(.empty):not(.future):active{transform:scale(.93);}
   .cal-cell.done{background:linear-gradient(160deg,var(--bg1),var(--bg2));color:#fff;}
   .cal-cell.today{outline:2.5px solid var(--xp);outline-offset:-2.5px;}
   .cal-cell .mark{font-size:9px;line-height:1;margin-top:2px;opacity:.9;}
@@ -187,7 +189,8 @@
         <div id="talkQs"></div>
         <a class="talk-btn" id="talkLink" href="#" target="_blank" rel="noopener">💬 Claude에서 이 주제로 대화 시작</a>
         <button class="talk-btn sec" onclick="copyPrompt()">📋 대화 프롬프트 복사</button>
-        <div class="talk-hint">버튼을 누르면 Claude에 이 주제가 미리 입력된 새 대화가 열려요.<br>혹시 열리지 않으면 프롬프트를 복사해서 Claude 앱에 붙여넣으세요.</div>
+        <button class="talk-btn sec" id="talkDoneBtn" onclick="toggleTalkDone()">☐ 대화 연습 완료로 기록</button>
+        <div class="talk-hint">버튼을 누르면 Claude에 이 주제가 미리 입력된 새 대화가 열려요.<br>대화가 끝나면 Claude가 돌아오는 링크를 줄 거예요 — 그걸 누르면 자동으로 기록돼요.<br>수동으로 체크하고 싶으면 위 "완료로 기록" 버튼을 누르세요.</div>
       </div>
       <button class="next-btn ghost" onclick="goTo(3)">오늘 학습 마무리 →</button>
     </div>
@@ -224,13 +227,15 @@
         <div class="cal-grid" id="calGrid"></div>
         <div class="cal-legend">
           <span><i class="lg-box" style="background:linear-gradient(160deg,#6D5BD0,#8B7FE8)"></i> 학습한 날</span>
-          <span><i class="lg-box" style="background:#FAF9FE;border:1px solid #EDEBF7"></i> 안 한 날</span>
+          <span>💬 대화 연습까지</span>
           <span><i class="lg-box" style="background:#fff;outline:2.5px solid #FF9F1C;outline-offset:-2.5px"></i> 오늘</span>
         </div>
+        <div class="talk-hint" style="margin-top:10px">날짜를 눌러 지난 기록을 직접 추가·수정할 수 있어요<br>(안 함 → 학습함 → 학습+대화 💬 → 삭제 순서로 바뀝니다)</div>
         <div class="cal-summary">
           <div class="rstat"><div class="v" id="calTotal">0</div><div class="l">총 학습일</div></div>
           <div class="rstat"><div class="v" id="calMonth">0</div><div class="l">이번 달</div></div>
           <div class="rstat"><div class="v" id="calBest">0</div><div class="l">최고 연속</div></div>
+          <div class="rstat"><div class="v" id="calTalk">0</div><div class="l">대화 연습</div></div>
         </div>
       </div>
 
@@ -653,8 +658,36 @@ function buildTalkPrompt(){
     '(3) After about 4-5 exchanges, or when I say "done", list 3-5 of my awkward or incorrect sentences '+
     'as "original -> more natural version", and explain why in Korean. '+
     'Pay special attention to missing articles (a/an/the), verb tenses (especially present perfect), '+
-    'and phrases translated too literally from Korean.\n\n'+
+    'and phrases translated too literally from Korean.\n'+
+    '(4) IMPORTANT: right after you give me the feedback, end your message with this exact line so my '+
+    'app can record the practice:\n'+
+    '기록하기: https://park-minjoo.github.io/daily-english-quiz/?talk=1\n\n'+
     'Please start by asking me your first question!';
+}
+function isTalkDone(){
+  const d = lsGet(LS_DAYS, {})[dayKey()];
+  return !!(d && d.talk);
+}
+function setTalkDone(v){
+  const days = lsGet(LS_DAYS, {}), k = dayKey();
+  days[k] = Object.assign({ xp:0, score:0, total:0, rounds:0 }, days[k], { talk: !!v });
+  lsSet(LS_DAYS, days);
+  refreshStatbar();
+  refreshTalkDoneBtn();
+}
+function refreshTalkDoneBtn(){
+  const b = document.getElementById('talkDoneBtn');
+  if(!b) return;
+  const on = isTalkDone();
+  b.textContent = on ? '☑ 대화 연습 완료 (오늘)' : '☐ 대화 연습 완료로 기록';
+  b.style.background = on ? 'var(--good-bg)' : '#fff';
+  b.style.color = on ? '#146C46' : 'var(--accent)';
+  b.style.borderColor = on ? 'var(--good)' : 'var(--line)';
+}
+function toggleTalkDone(){
+  const next = !isTalkDone();
+  setTalkDone(next);
+  showToast(next ? '오늘 대화 연습을 기록했어요! 💬' : '대화 연습 기록을 취소했어요');
 }
 function renderTalk(){
   document.getElementById('talkTopic').textContent = talk.topic;
@@ -666,6 +699,7 @@ function renderTalk(){
   });
   document.getElementById('talkLink').href =
     'https://claude.ai/new?q=' + encodeURIComponent(buildTalkPrompt());
+  refreshTalkDoneBtn();
 }
 function showToast(msg){
   const t=document.getElementById('toast');
@@ -755,14 +789,49 @@ function renderCalendar(){
     const rec=days[k];
     if(rec) monthCount++;
     const cell=document.createElement('div');
-    cell.className='cal-cell'+(rec?' done':'')+(k===todayK?' today':'');
-    cell.innerHTML='<div>'+d+'</div>'+(rec?'<div class="mark">'+rec.score+'/'+rec.total+'</div>':'');
-    if(rec) cell.title=k+' · '+rec.score+'/'+rec.total+' 정답 · '+rec.xp+' XP';
+    const isFuture = k > todayK;
+    cell.className='cal-cell'+(rec?' done':'')+(k===todayK?' today':'')+(isFuture?' future':'');
+    let mark = '';
+    if(rec){
+      const quizPart = rec.total ? rec.score+'/'+rec.total : '✓';
+      mark = '<div class="mark">'+quizPart+(rec.talk?' 💬':'')+'</div>';
+    }
+    cell.innerHTML='<div>'+d+'</div>'+mark;
+    if(rec) cell.title=k+' · '+(rec.total?rec.score+'/'+rec.total+' 정답 · ':'')+(rec.xp||0)+' XP'+(rec.talk?' · 대화 연습 완료':'');
+    if(!isFuture){
+      cell.style.cursor='pointer';
+      cell.onclick=()=>cycleDay(k);
+    }
     grid.appendChild(cell);
   }
   document.getElementById('calTotal').textContent = Object.keys(days).length;
   document.getElementById('calMonth').textContent = monthCount;
   document.getElementById('calBest').textContent = computeBestStreak(days);
+  document.getElementById('calTalk').textContent =
+    Object.keys(days).filter(k=>days[k].talk).length;
+}
+
+// 지난 날 기록 직접 수정: 없음 → 학습함 → 학습+대화 → 없음
+function cycleDay(k){
+  const days = lsGet(LS_DAYS, {});
+  const rec = days[k];
+  if(!rec){
+    days[k] = { xp:0, score:0, total:0, rounds:0, manual:true, talk:false };
+    showToast(k + ' 학습한 날로 표시했어요');
+  } else if(!rec.talk){
+    rec.talk = true;
+    showToast(k + ' 대화 연습까지 표시했어요 💬');
+  } else if(rec.manual){
+    delete days[k];
+    showToast(k + ' 기록을 지웠어요');
+  } else {
+    rec.talk = false;
+    showToast(k + ' 대화 연습 표시를 해제했어요');
+  }
+  lsSet(LS_DAYS, days);
+  refreshStatbar();
+  renderCalendar();
+  renderWeakList();
 }
 function renderWeakList(){
   const srs = lsGet(LS_SRS, {}), today = dayKey();
@@ -799,6 +868,15 @@ function burstConfetti(){
 
 (function init(){
   const n=new Date();
+  // Claude 대화 끝에서 돌아온 링크(?talk=1)면 오늘 대화 연습을 자동 기록
+  try{
+    const params = new URLSearchParams(location.search);
+    if(params.get('talk')==='1'){
+      setTalkDone(true);
+      setTimeout(()=>showToast('대화 연습을 기록했어요! 💬 수고했어요'), 400);
+      history.replaceState(null,'',location.pathname);
+    }
+  }catch(e){}
   document.getElementById('dateLabel').textContent =
     n.getFullYear()+'.'+String(n.getMonth()+1).padStart(2,'0')+'.'+String(n.getDate()).padStart(2,'0');
   document.getElementById('subtitle').textContent =
