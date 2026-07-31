@@ -28,7 +28,11 @@
     "Would it be possible to ...?",
     "the (문맥상 특정한 대상을 가리키는 정관사)",
     "make a mistake",
-    "keep track of"
+    "keep track of",
+    "I'd appreciate it if you could ...",
+    "pay attention to",
+    "take responsibility for",
+    "have been + 기간 (현재완료 계속)"
   ],
   "topics": [
     "A time you had to bite the bullet",
@@ -39,10 +43,12 @@
     "A place you'd love to travel to next",
     "Something that changed your mind recently",
     "Your ideal way to start the morning",
-    "A dish you never get tired of"
+    "A dish you never get tired of",
+    "Making small talk with people you don't know well"
   ],
   "log": [
     { "date": "2026-07-30", "addedItems": 24, "addedTopics": 8, "note": "초기 구축 — 간격 반복 복습 + 학습 달력 도입" },
-    { "date": "2026-07-30", "addedItems": 4, "addedTopics": 1, "note": "완곡 표현(Would it be possible to), 정관사 the, collocation(make a mistake, keep track of) 보강 + 음식 주제 추가" }
+    { "date": "2026-07-30", "addedItems": 4, "addedTopics": 1, "note": "완곡 표현(Would it be possible to), 정관사 the, collocation(make a mistake, keep track of) 보강 + 음식 주제 추가" },
+    { "date": "2026-07-31", "addedItems": 4, "addedTopics": 1, "note": "완곡 표현(I'd appreciate it if you could), collocation(pay attention to, take responsibility for), 현재완료 계속(have been + 기간) 보강 + 스몰토크 주제 추가" }
   ]
 }

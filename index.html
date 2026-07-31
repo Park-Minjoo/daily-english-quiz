@@ -451,7 +451,35 @@ const POOL = [
     options:["Keeping","Making","Taking","Doing"], correctIndex:0,
     meaning:"\"keep track of\"는 무언가를 계속 기록·파악하다라는 뜻의 고정 표현으로 반드시 \"keep\"과 짝을 이뤄요. 정산 시스템 업무와도 잘 어울리는 표현이에요.",
     examples:[{en:"We use a dashboard to keep track of every transaction.",ko:"모든 거래를 파악하기 위해 대시보드를 사용해요."},
-              {en:"It's hard to keep track of so many edge cases.",ko:"이렇게 많은 예외 케이스를 다 파악하기가 어려워요."}]}
+              {en:"It's hard to keep track of so many edge cases.",ko:"이렇게 많은 예외 케이스를 다 파악하기가 어려워요."}]},
+
+  { type:"word", headline:"I'd appreciate it if you could ...",
+    question:"동료에게 검토를 정중하게 부탁하는 이메일 표현으로 가장 적절한 것은?",
+    options:["Review this today.","I'd appreciate it if you could review this by tomorrow.","You need to review this now.","Review this, thanks."], correctIndex:1,
+    meaning:"\"appreciate\"와 함께 쓰는 완곡한 부탁 표현이에요. 명령문(Review this...)보다 훨씬 정중하게 들려서 업무 이메일에 적합해요. 한국어 화자는 이런 상황에서 직설적인 명령문을 고르기 쉬우니 주의하세요.",
+    examples:[{en:"I'd appreciate it if you could review this by tomorrow.",ko:"내일까지 검토해주시면 감사하겠습니다."},
+              {en:"I'd appreciate it if you could double-check the settlement numbers.",ko:"정산 수치를 다시 한번 확인해주시면 감사하겠습니다."}]},
+
+  { type:"idiom", headline:"pay attention to",
+    question:"빈칸에 알맞은 동사는: \"Please ___ attention to the edge cases in the settlement logic.\"",
+    options:["pay","make","do","give"], correctIndex:0,
+    meaning:"\"attention\"은 반드시 \"pay\"와 짝을 이루는 고정 collocation이에요 (pay attention to). \"make/do attention\"이라고 쓰지 않도록 주의하세요.",
+    examples:[{en:"Please pay attention to the edge cases in the settlement logic.",ko:"정산 로직의 예외 케이스에 주의를 기울여 주세요."},
+              {en:"I didn't pay enough attention to the error message.",ko:"에러 메시지에 충분히 주의를 기울이지 않았어요."}]},
+
+  { type:"idiom", headline:"take responsibility for",
+    question:"빈칸에 알맞은 동사는: \"As the developer in charge, I need to ___ responsibility for this bug.\"",
+    options:["take","make","do","have"], correctIndex:0,
+    meaning:"\"responsibility\"는 \"take\"와 짝을 이루는 고정 collocation이에요 (take responsibility for). 담당자로서 책임을 진다는 업무 상황에서 자주 쓰여요.",
+    examples:[{en:"I need to take responsibility for this bug since I wrote that module.",ko:"제가 그 모듈을 작성했으니 이 버그에 대해 책임을 져야 해요."},
+              {en:"She took responsibility for the mistake in the settlement report.",ko:"그녀는 정산 보고서의 실수에 대해 책임을 졌어요."}]},
+
+  { type:"word", headline:"have been + 기간 (현재완료 계속)",
+    question:"빈칸에 알맞은 것은: \"I ___ a junior developer for about a year now.\"",
+    options:["have been","am","was","had been"], correctIndex:0,
+    meaning:"과거에 시작해서 지금까지 계속되는 상태·기간은 현재완료(have been)로 표현해요. 한국어는 현재형으로 직역하기 쉬워서 \"I am a junior developer for a year\"처럼 잘못 쓰기 쉬우니 주의하세요. for/since와 자주 짝을 이뤄요.",
+    examples:[{en:"I have been a junior developer for about a year now.",ko:"저는 주니어 개발자로 일한 지 이제 약 1년 됐어요."},
+              {en:"I have been working on the settlement system since I joined.",ko:"입사한 이후로 계속 정산 시스템을 담당하고 있어요."}]}
 ];
 
 /* ============================================================
@@ -502,7 +530,12 @@ const TOPICS = [
     intro:"질리지 않고 계속 먹을 수 있는 음식에 대해 이야기해봐요.",
     questions:["What's a dish you could eat every single day and never get tired of?",
                "Is it something you usually cook yourself or order?",
-               "What's a food you used to dislike but grew to love?"]}
+               "What's a food you used to dislike but grew to love?"]},
+  { topic:"Making small talk with people you don't know well",
+    intro:"잘 모르는 사람과 나누는 스몰토크에 대해 이야기해봐요.",
+    questions:["What do you usually talk about when you make small talk with someone new?",
+               "Is small talk easy or awkward for you?",
+               "What's a good icebreaker question you like to use?"]}
 ];
 
 /* ============================================================
