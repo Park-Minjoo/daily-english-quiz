@@ -1,6 +1,6 @@
 // Minimal service worker: network-first for the page (so today's new quiz
 // always loads when online), falls back to the last cached version offline.
-const CACHE = "en-quiz-v5";
+const CACHE = "en-quiz-v6";
 const CORE_ASSETS = ["./", "./index.html", "./manifest.json", "./icon-192.png", "./icon-512.png"];
 
 self.addEventListener("install", (event) => {

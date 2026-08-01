@@ -479,7 +479,35 @@ const POOL = [
     options:["have been","am","was","had been"], correctIndex:0,
     meaning:"과거에 시작해서 지금까지 계속되는 상태·기간은 현재완료(have been)로 표현해요. 한국어는 현재형으로 직역하기 쉬워서 \"I am a junior developer for a year\"처럼 잘못 쓰기 쉬우니 주의하세요. for/since와 자주 짝을 이뤄요.",
     examples:[{en:"I have been a junior developer for about a year now.",ko:"저는 주니어 개발자로 일한 지 이제 약 1년 됐어요."},
-              {en:"I have been working on the settlement system since I joined.",ko:"입사한 이후로 계속 정산 시스템을 담당하고 있어요."}]}
+              {en:"I have been working on the settlement system since I joined.",ko:"입사한 이후로 계속 정산 시스템을 담당하고 있어요."}]},
+
+  { type:"word", headline:"Would you be able to ...?",
+    question:"동료에게 부담을 주지 않으면서 정중하게 부탁하는 표현으로 가장 적절한 것은?",
+    options:["Can you review my PR today?","You must review my PR today.","Would you be able to review my PR sometime today?","Review my PR today."], correctIndex:2,
+    meaning:"\"Would you be able to ...?\"는 상대방의 상황을 배려하며 정중하게 부탁할 때 쓰는 완곡 표현이에요. \"Can you\"보다 더 조심스럽고 부드럽게 들려요. 한국어 화자는 이런 상황에서 직설적인 명령문이나 \"Can you\"를 고르기 쉬운데, 부탁의 강도를 낮추고 싶을 때 유용해요.",
+    examples:[{en:"Would you be able to review my PR sometime today?",ko:"오늘 중으로 제 PR을 검토해주실 수 있을까요?"},
+              {en:"Would you be able to send the settlement data by end of day?",ko:"정산 데이터를 오늘까지 보내주실 수 있을까요?"}]},
+
+  { type:"word", headline:"have never + p.p. (현재완료 경험)",
+    question:"빈칸에 알맞은 것은: \"I ___ this kind of bug before, so I'm not sure how to fix it.\"",
+    options:["have never seen","never see","didn't see","am never seeing"], correctIndex:0,
+    meaning:"지금까지의 경험을 말할 때는 현재완료(have + p.p.)를 써요. \"I never see\"처럼 현재형으로 직역하면 어색해요. 경험을 나타내는 현재완료는 ever/never와 자주 함께 쓰여요.",
+    examples:[{en:"I have never seen this kind of bug before, so I'm not sure how to fix it.",ko:"이런 종류의 버그는 처음 봐서 어떻게 고쳐야 할지 모르겠어요."},
+              {en:"Have you ever dealt with a production outage like this?",ko:"이런 종류의 실제 서비스 장애를 다뤄본 적 있으세요?"}]},
+
+  { type:"idiom", headline:"get the hang of",
+    question:"빈칸에 알맞은 동사는: \"It took me a few weeks to ___ the hang of our settlement system.\"",
+    options:["get","take","make","catch"], correctIndex:0,
+    meaning:"\"hang\"은 반드시 \"get\"과 짝을 이루는 고정 collocation이에요 (get the hang of = 요령을 터득하다). \"take/make/catch the hang of\"라고 쓰지 않도록 주의하세요.",
+    examples:[{en:"It took me a few weeks to get the hang of our settlement system.",ko:"저희 정산 시스템에 요령을 익히는 데 몇 주 걸렸어요."},
+              {en:"Once you get the hang of it, the workflow feels much faster.",ko:"요령을 터득하고 나면 작업 흐름이 훨씬 빨라져요."}]},
+
+  { type:"idiom", headline:"make an effort",
+    question:"빈칸에 알맞은 동사는: \"I'm trying to ___ more of an effort to write clear commit messages.\"",
+    options:["make","do","take","have"], correctIndex:0,
+    meaning:"\"effort\"는 \"make\"와 짝을 이루는 고정 collocation이에요 (make an effort). \"do an effort\"라고 하지 않도록 주의하세요.",
+    examples:[{en:"I'm trying to make more of an effort to write clear commit messages.",ko:"명확한 커밋 메시지를 쓰려고 더 노력하고 있어요."},
+              {en:"She made a real effort to explain the bug clearly during the standup.",ko:"그녀는 스탠드업 때 버그를 명확하게 설명하려고 정말 애썼어요."}]}
 ];
 
 /* ============================================================
@@ -535,7 +563,12 @@ const TOPICS = [
     intro:"잘 모르는 사람과 나누는 스몰토크에 대해 이야기해봐요.",
     questions:["What do you usually talk about when you make small talk with someone new?",
                "Is small talk easy or awkward for you?",
-               "What's a good icebreaker question you like to use?"]}
+               "What's a good icebreaker question you like to use?"]},
+  { topic:"A friendship that has shaped who you are",
+    intro:"지금의 나에게 영향을 준 우정에 대해 이야기해봐요.",
+    questions:["Is there a friendship that has really shaped who you are?",
+               "What do you value most in a close friend?",
+               "How do you usually stay in touch with old friends?"]}
 ];
 
 /* ============================================================
