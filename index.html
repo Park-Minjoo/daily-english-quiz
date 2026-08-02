@@ -507,7 +507,35 @@ const POOL = [
     options:["make","do","take","have"], correctIndex:0,
     meaning:"\"effort\"는 \"make\"와 짝을 이루는 고정 collocation이에요 (make an effort). \"do an effort\"라고 하지 않도록 주의하세요.",
     examples:[{en:"I'm trying to make more of an effort to write clear commit messages.",ko:"명확한 커밋 메시지를 쓰려고 더 노력하고 있어요."},
-              {en:"She made a real effort to explain the bug clearly during the standup.",ko:"그녀는 스탠드업 때 버그를 명확하게 설명하려고 정말 애썼어요."}]}
+              {en:"She made a real effort to explain the bug clearly during the standup.",ko:"그녀는 스탠드업 때 버그를 명확하게 설명하려고 정말 애썼어요."}]},
+
+  { type:"word", headline:"Do you think you could ...?",
+    question:"다음 중 동료에게 부탁할 때 가장 정중한 완곡 표현은?",
+    options:["Do you think you could review this PR today?","Review this PR today.","You need to review this PR today.","Can you review this PR today?"], correctIndex:0,
+    meaning:"\"Do you think you could + 동사?\"는 상대방의 의사를 존중하며 아주 정중하게 부탁하는 완곡 표현이에요. 명령형이나 단순 \"Can you\"보다 훨씬 부드럽고 격식 있게 들려요.",
+    examples:[{en:"Do you think you could take a look at this settlement discrepancy before EOD?",ko:"오늘 안에 이 정산 불일치 건을 한번 봐주실 수 있을까요?"},
+              {en:"Do you think you could double-check these numbers before I send the report?",ko:"제가 리포트를 보내기 전에 이 숫자들을 한번 더 확인해 주실 수 있을까요?"}]},
+
+  { type:"word", headline:"have just + p.p. (현재완료 완료)",
+    question:"빈칸에 알맞은 것은: \"I ___ finished fixing the settlement bug, so I'll deploy it now.\"",
+    options:["have just","just did","am just","had just"], correctIndex:0,
+    meaning:"방금 막 끝난 일을 말할 때는 현재완료 완료 용법인 \"have just + p.p.\"를 써요. \"just did\"처럼 단순과거로 직역하면 '막 끝났다'는 완료의 뉘앙스가 사라져 어색해요.",
+    examples:[{en:"I have just finished fixing the settlement bug, so I'll deploy it now.",ko:"방금 정산 버그 수정을 끝내서 지금 배포할게요."},
+              {en:"We have just received the updated requirements from the client.",ko:"방금 고객으로부터 업데이트된 요구사항을 받았어요."}]},
+
+  { type:"idiom", headline:"look into",
+    question:"빈칸에 알맞은 동사는: \"Can you ___ into why the settlement batch failed last night?\"",
+    options:["look","see","watch","find"], correctIndex:0,
+    meaning:"\"into\"는 \"look\"과 짝을 이루는 고정 collocation이에요 (look into = 조사하다, 알아보다). \"see/watch/find into\"라고는 쓰지 않아요.",
+    examples:[{en:"Can you look into why the settlement batch failed last night?",ko:"어젯밤 정산 배치가 왜 실패했는지 조사해 주실 수 있나요?"},
+              {en:"I'll look into the issue and get back to you by tomorrow.",ko:"그 문제를 조사해서 내일까지 다시 알려드릴게요."}]},
+
+  { type:"idiom", headline:"take into account",
+    question:"빈칸에 알맞은 동사는: \"We need to ___ the exchange rate fluctuations into account when calculating settlements.\"",
+    options:["take","make","put","get"], correctIndex:0,
+    meaning:"\"account\"는 \"take\"와 짝을 이루는 고정 collocation이에요 (take ... into account = ~을 고려하다). \"make/put/get into account\"라고 쓰지 않도록 주의하세요.",
+    examples:[{en:"We need to take the exchange rate fluctuations into account when calculating settlements.",ko:"정산을 계산할 때 환율 변동을 고려해야 해요."},
+              {en:"Did you take the holiday schedule into account when planning the release?",ko:"릴리스를 계획할 때 공휴일 일정을 고려하셨나요?"}]}
 ];
 
 /* ============================================================
@@ -568,7 +596,12 @@ const TOPICS = [
     intro:"지금의 나에게 영향을 준 우정에 대해 이야기해봐요.",
     questions:["Is there a friendship that has really shaped who you are?",
                "What do you value most in a close friend?",
-               "How do you usually stay in touch with old friends?"]}
+               "How do you usually stay in touch with old friends?"]},
+  { topic:"A hobby you've picked up (or want to)",
+    intro:"요즘 하고 있거나 시작해보고 싶은 취미에 대해 이야기해봐요.",
+    questions:["Do you have a hobby you've picked up recently?",
+               "What made you interested in it?",
+               "Is there a hobby you've always wanted to try but haven't yet?"]}
 ];
 
 /* ============================================================
