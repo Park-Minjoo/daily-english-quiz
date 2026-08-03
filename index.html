@@ -535,7 +535,35 @@ const POOL = [
     options:["take","make","put","get"], correctIndex:0,
     meaning:"\"account\"는 \"take\"와 짝을 이루는 고정 collocation이에요 (take ... into account = ~을 고려하다). \"make/put/get into account\"라고 쓰지 않도록 주의하세요.",
     examples:[{en:"We need to take the exchange rate fluctuations into account when calculating settlements.",ko:"정산을 계산할 때 환율 변동을 고려해야 해요."},
-              {en:"Did you take the holiday schedule into account when planning the release?",ko:"릴리스를 계획할 때 공휴일 일정을 고려하셨나요?"}]}
+              {en:"Did you take the holiday schedule into account when planning the release?",ko:"릴리스를 계획할 때 공휴일 일정을 고려하셨나요?"}]},
+
+  { type:"word", headline:"I hate to bother you, but ...",
+    question:"다음 중 회사 이메일에서 부탁할 때 가장 정중하고 자연스러운 표현은?",
+    options:["I hate to bother you, but could you check this when you have a moment?","Do this now.","You need to check this.","Hurry up and check this."], correctIndex:0,
+    meaning:"직접적으로 부탁하기 미안한 마음을 먼저 표현하는 완곡 표현이에요. 바쁜 상대에게 부탁할 때 부드럽게 시작할 수 있어요.",
+    examples:[{en:"I hate to bother you, but could you take a quick look at this settlement report?",ko:"번거롭게 해드려 죄송한데, 이 정산 보고서 잠깐 봐주실 수 있을까요."},
+              {en:"I hate to bother you again, but the deadline is tomorrow.",ko:"또 귀찮게 해드려 죄송한데, 마감이 내일이에요."}]},
+
+  { type:"word", headline:"have already + p.p. (현재완료 결과)",
+    question:"빈칸에 알맞은 것은: \"Don't worry about the settlement report — I ___ already sent it to the client.\"",
+    options:["have","did","was","am"], correctIndex:0,
+    meaning:"이미 끝난 일의 '현재 결과'를 강조할 때 현재완료 \"have already + p.p.\"를 써요. 단순과거 \"sent it\"만 쓰면 '지금 상태'가 아니라 '과거 사실'만 전달돼서, '그러니 걱정 마세요'라는 뉘앙스가 약해져요.",
+    examples:[{en:"I have already fixed the bug, so you can deploy now.",ko:"버그는 이미 고쳐놨으니 지금 배포하셔도 돼요."},
+              {en:"She has already left the office.",ko:"그녀는 이미 퇴근했어요(그래서 지금 사무실에 없어요)."}]},
+
+  { type:"idiom", headline:"give (someone) a hand",
+    question:"빈칸에 알맞은 동사는: \"Could you ___ me a hand with this deployment? I'm a bit stuck.\"",
+    options:["give","make","do","take"], correctIndex:0,
+    meaning:"\"hand\"는 \"give\"와 짝을 이루는 고정 collocation이에요 (give someone a hand = 도와주다). \"make/do/take a hand\"라고는 쓰지 않아요.",
+    examples:[{en:"Could you give me a hand with this deployment? I'm a bit stuck.",ko:"이 배포 좀 도와주실 수 있어요? 좀 막혔어요."},
+              {en:"Let me know if you need a hand with the settlement report.",ko:"정산 보고서 도움 필요하시면 말씀해주세요."}]},
+
+  { type:"idiom", headline:"keep (someone) posted",
+    question:"\"I'll keep you posted.\"의 의미로 가장 알맞은 것은?",
+    options:["진행 상황을 계속 알려줄게요","여기서 기다릴게요","다 잊어버릴게요","제가 결정할게요"], correctIndex:0,
+    meaning:"\"posted\"는 \"keep\"과 짝을 이루는 고정 collocation이에요 (keep someone posted = 진행 상황을 계속 알려주다). 업무 이메일·슬랙에서 자주 쓰는 표현이에요.",
+    examples:[{en:"I'll keep you posted on the settlement batch fix.",ko:"정산 배치 수정 관련해서 진행 상황 계속 알려드릴게요."},
+              {en:"Please keep me posted if anything changes.",ko:"변동 사항 있으면 계속 알려주세요."}]}
 ];
 
 /* ============================================================
@@ -601,7 +629,12 @@ const TOPICS = [
     intro:"요즘 하고 있거나 시작해보고 싶은 취미에 대해 이야기해봐요.",
     questions:["Do you have a hobby you've picked up recently?",
                "What made you interested in it?",
-               "Is there a hobby you've always wanted to try but haven't yet?"]}
+               "Is there a hobby you've always wanted to try but haven't yet?"]},
+  { topic:"Giving and receiving feedback at work",
+    intro:"직장에서 피드백을 주고받는 경험에 대해 이야기해봐요.",
+    questions:["What's it like giving feedback on someone else's code?",
+               "How do you usually feel when you receive feedback on your own work?",
+               "What's some feedback that really helped you grow?"]}
 ];
 
 /* ============================================================
