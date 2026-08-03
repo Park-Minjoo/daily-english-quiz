@@ -132,6 +132,88 @@
 
   .toast{position:fixed;left:50%;bottom:36px;transform:translateX(-50%);background:#232134;color:#fff;font-size:13px;font-weight:700;padding:11px 18px;border-radius:99px;z-index:80;opacity:0;transition:opacity .25s;}
   .toast.show{opacity:1;}
+
+  /* ================= 단어장 ================= */
+  .v-bar{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+  .v-track{flex:1;height:9px;background:var(--chip);border-radius:99px;overflow:hidden;}
+  .v-fill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#6D5BD0,#9B8BF0);transition:width .45s cubic-bezier(.3,1.2,.4,1);}
+  .v-count{font-size:12px;font-weight:800;color:var(--sub);min-width:44px;text-align:right;letter-spacing:.02em;}
+
+  .mode-tag{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:800;padding:5px 11px;border-radius:99px;letter-spacing:.02em;}
+  .mode-card{background:#EEF6FF;color:#2563C9;}
+  .mode-mcq{background:var(--chip);color:var(--accent);}
+  .mode-build{background:#FFF0F6;color:#C2337A;}
+  .mode-type{background:#FFF3E0;color:#C77700;}
+  .new-tag{background:var(--good-bg);color:#128A55;}
+  .rev-tag{background:var(--rev-bg);color:var(--rev);}
+
+  /* --- 플래시카드 --- */
+  .flip{perspective:1200px;margin:6px 0 4px;}
+  .flip-in{position:relative;min-height:230px;transition:transform .5s cubic-bezier(.4,.9,.3,1);transform-style:preserve-3d;cursor:pointer;}
+  .flip.on .flip-in{transform:rotateY(180deg);}
+  .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:18px;padding:22px 18px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
+  .face.front{background:linear-gradient(155deg,#F7F5FF,#EDE9FC);border:1.5px solid var(--line);}
+  .face.back{background:#fff;border:1.5px solid var(--line);transform:rotateY(180deg);justify-content:flex-start;text-align:left;overflow-y:auto;}
+  .fw{font-size:29px;font-weight:800;letter-spacing:-.01em;line-height:1.25;}
+  .fpos{font-size:11.5px;font-weight:800;color:var(--accent);background:#fff;padding:4px 11px;border-radius:99px;margin-top:11px;}
+  .ftap{font-size:11.5px;color:var(--sub);font-weight:700;margin-top:18px;opacity:.75;}
+  .bko{font-size:17px;font-weight:800;line-height:1.45;margin-bottom:12px;}
+  .bcoll{font-size:12.5px;color:var(--rev);background:var(--rev-bg);border-radius:10px;padding:9px 11px;line-height:1.55;font-weight:700;margin-bottom:12px;}
+  .bex{font-size:13.5px;line-height:1.6;font-weight:600;}
+  .bex b{color:var(--accent);}
+  .bexk{font-size:12.5px;color:var(--sub);line-height:1.55;margin-top:4px;}
+
+  .know-row{display:flex;gap:9px;margin-top:12px;}
+  .know-btn{flex:1;border:none;border-radius:14px;padding:14px 8px;font-size:14px;font-weight:800;font-family:inherit;cursor:pointer;border-bottom:3px solid rgba(0,0,0,.12);transition:transform .1s;}
+  .know-btn:active{transform:translateY(2px);border-bottom-width:1px;}
+  .kb-no{background:var(--bad-bg);color:#C13439;}
+  .kb-yes{background:var(--good-bg);color:#128A55;}
+
+  /* --- 문장 배열 --- */
+  .build-ko{font-size:15px;font-weight:800;line-height:1.5;margin:4px 0 3px;}
+  .build-hint{font-size:11.5px;color:var(--sub);font-weight:700;margin-bottom:14px;}
+  .drop{position:relative;min-height:104px;background:#FAF9FE;border:1.5px solid var(--line);border-radius:16px;padding:12px 11px;display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start;}
+  .drop::before,.drop::after{content:"";position:absolute;left:12px;right:12px;border-bottom:1.5px dashed #E2DEF5;pointer-events:none;}
+  .drop::before{top:47px;} .drop::after{top:88px;}
+  .drop.ok{background:var(--good-bg);border-color:var(--good);}
+  .drop.no{background:var(--bad-bg);border-color:var(--bad);}
+  .bank{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px;min-height:44px;}
+
+  .tile{position:relative;z-index:1;background:#fff;border:1.5px solid var(--line);border-bottom:3px solid #DCD7F0;border-radius:12px;padding:9px 13px;font-size:14.5px;font-weight:700;font-family:inherit;color:var(--ink);cursor:pointer;line-height:1.2;animation:pop .22s cubic-bezier(.3,1.5,.5,1);transition:transform .1s,box-shadow .15s;}
+  .tile:active{transform:translateY(2px);border-bottom-width:1px;}
+  .tile.ghost{visibility:hidden;pointer-events:none;animation:none;}
+  .tile.dim{opacity:.34;pointer-events:none;}
+  @keyframes pop{from{transform:scale(.72);opacity:0;} to{transform:scale(1);opacity:1;}}
+  .drop.no .tile{border-color:#F3C3C5;}
+
+  .sol{margin-top:12px;background:var(--good-bg);border-radius:12px;padding:11px 13px;font-size:13.5px;font-weight:700;line-height:1.6;color:#116E45;}
+  .sol .lbl{display:block;font-size:11px;letter-spacing:.04em;opacity:.8;margin-bottom:3px;}
+  .sol.tip{background:#FFF3E0;color:#9A5B00;}
+
+  /* --- 타이핑 --- */
+  .type-ko{font-size:16px;font-weight:800;line-height:1.5;margin-bottom:5px;}
+  .type-sent{font-size:14.5px;font-weight:600;line-height:1.7;color:var(--sub);background:var(--chip);border-radius:12px;padding:12px 13px;margin:11px 0 14px;}
+  .type-sent i{font-style:normal;color:var(--accent);font-weight:800;letter-spacing:.06em;}
+  .type-in{width:100%;border:2px solid var(--line);border-radius:14px;padding:14px 15px;font-size:17px;font-weight:700;font-family:inherit;color:var(--ink);outline:none;transition:border-color .18s;background:#fff;-webkit-appearance:none;}
+  .type-in:focus{border-color:var(--accent);}
+  .type-in.ok{border-color:var(--good);background:var(--good-bg);}
+  .type-in.no{border-color:var(--bad);background:var(--bad-bg);}
+  .type-first{font-size:12px;color:var(--sub);font-weight:700;margin-top:9px;}
+
+  .check-btn{width:100%;margin-top:14px;border:none;border-radius:15px;padding:15px;font-size:15px;font-weight:800;font-family:inherit;color:#fff;background:var(--accent);border-bottom:3px solid #503FA8;cursor:pointer;transition:transform .1s,opacity .2s;}
+  .check-btn:active{transform:translateY(2px);border-bottom-width:1px;}
+  .check-btn:disabled{opacity:.4;cursor:default;transform:none;}
+  .check-btn.go{background:var(--good);border-bottom-color:#128A55;}
+
+  .vfin{text-align:center;padding:12px 4px;}
+  .vfin .em{font-size:46px;}
+  .vfin h2{font-size:21px;margin:8px 0 4px;font-weight:800;}
+  .vfin p{font-size:13.5px;color:var(--sub);line-height:1.6;margin:0 0 4px;}
+  .vlist{margin-top:14px;text-align:left;}
+  .vrow{display:flex;gap:9px;align-items:baseline;padding:9px 0;border-top:1px solid var(--line);font-size:13.5px;}
+  .vrow .w{font-weight:800;min-width:96px;}
+  .vrow .k{color:var(--sub);font-size:12.5px;flex:1;line-height:1.45;}
+  .vrow .st{font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:99px;white-space:nowrap;}
 </style>
 </head>
 <body>
@@ -141,6 +223,7 @@
     <div class="stat-chip">🔥 <span id="streakN">0</span>일 연속</div>
     <div class="stat-chip">⭐ <span id="xpN">0</span> XP</div>
     <div class="stat-chip" id="dueChip" style="display:none">🔁 복습 <span id="dueN">0</span></div>
+    <button class="stat-chip" onclick="startVocab()">📚 단어장</button>
     <button class="stat-chip" onclick="goTo(4)">📅 달력</button>
   </div>
 
@@ -227,6 +310,7 @@
         <div class="cal-grid" id="calGrid"></div>
         <div class="cal-legend">
           <span><i class="lg-box" style="background:linear-gradient(160deg,#6D5BD0,#8B7FE8)"></i> 학습한 날</span>
+          <span>📚 단어 학습</span>
           <span>💬 대화 연습까지</span>
           <span><i class="lg-box" style="background:#fff;outline:2.5px solid #FF9F1C;outline-offset:-2.5px"></i> 오늘</span>
         </div>
@@ -236,6 +320,7 @@
           <div class="rstat"><div class="v" id="calMonth">0</div><div class="l">이번 달</div></div>
           <div class="rstat"><div class="v" id="calBest">0</div><div class="l">최고 연속</div></div>
           <div class="rstat"><div class="v" id="calTalk">0</div><div class="l">대화 연습</div></div>
+          <div class="rstat"><div class="v" id="calWords">0</div><div class="l">익힌 단어</div></div>
         </div>
       </div>
 
@@ -247,10 +332,23 @@
       <button class="next-btn ghost" onclick="goTo(0)">← 퀴즈로 돌아가기</button>
     </div>
 
+    <!-- 5: 단어장 -->
+    <div class="screen" data-idx="5">
+      <div class="card">
+        <div class="v-bar">
+          <div class="v-track"><div class="v-fill" id="vFill"></div></div>
+          <div class="v-count" id="vCount">0 / 0</div>
+        </div>
+        <div id="vStage"></div>
+      </div>
+      <button class="next-btn ghost" onclick="quitVocab()">← 나가기 (진도는 저장돼요)</button>
+    </div>
+
   </div>
 </div>
 <div class="toast" id="toast"></div>
 
+<script src="./words.js"></script>
 <script>
 /* ============================================================
    POOL — 문제 은행. 매일 예약 작업이 새 항목을 추가합니다.
@@ -653,6 +751,7 @@ function dayKey(d){
   d = d || new Date();
   return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,'0')+"-"+String(d.getDate()).padStart(2,'0');
 }
+function esc(s){ return String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
 function daysFromNow(n){ const d=new Date(); d.setDate(d.getDate()+n); return dayKey(d); }
 function daysBetween(a, b){
   return Math.round((new Date(b+"T00:00:00") - new Date(a+"T00:00:00"))/86400000);
@@ -751,6 +850,10 @@ function goTo(idx){
   if(idx===2) renderTalk();
   if(idx===3){ saveToday(); showResult(); burstConfetti(); }
   if(idx===4){ renderCalendar(); renderWeakList(); }
+  document.getElementById('progress').style.display = idx===5 ? 'none' : 'flex';
+  document.getElementById('subtitle').textContent = idx===5
+    ? '단어를 익힐수록 문제 형식이 어려워져요'
+    : (POOL.length+'개 표현 중 랜덤 5문항 · 틀린 문제는 자동 복습');
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
@@ -906,7 +1009,7 @@ function refreshStatbar(){
   const days = lsGet(LS_DAYS, {});
   document.getElementById('streakN').textContent = computeStreak(days);
   document.getElementById('xpN').textContent = lsGet(LS_XP, 0);
-  const n = dueCount();
+  const n = dueCount() + vocabDue();
   document.getElementById('dueChip').style.display = n>0 ? 'flex' : 'none';
   document.getElementById('dueN').textContent = n;
 }
@@ -958,11 +1061,11 @@ function renderCalendar(){
     cell.className='cal-cell'+(rec?' done':'')+(k===todayK?' today':'')+(isFuture?' future':'');
     let mark = '';
     if(rec){
-      const quizPart = rec.total ? rec.score+'/'+rec.total : '✓';
-      mark = '<div class="mark">'+quizPart+(rec.talk?' 💬':'')+'</div>';
+      const quizPart = rec.total ? rec.score+'/'+rec.total : (rec.vocab ? rec.vocab+'단어' : '✓');
+      mark = '<div class="mark">'+quizPart+(rec.vocab&&rec.total?' 📚':'')+(rec.talk?' 💬':'')+'</div>';
     }
     cell.innerHTML='<div>'+d+'</div>'+mark;
-    if(rec) cell.title=k+' · '+(rec.total?rec.score+'/'+rec.total+' 정답 · ':'')+(rec.xp||0)+' XP'+(rec.talk?' · 대화 연습 완료':'');
+    if(rec) cell.title=k+' · '+(rec.total?rec.score+'/'+rec.total+' 정답 · ':'')+(rec.vocab?'단어 '+rec.vocab+'개 · ':'')+(rec.xp||0)+' XP'+(rec.talk?' · 대화 연습 완료':'');
     if(!isFuture){
       cell.style.cursor='pointer';
       cell.onclick=()=>cycleDay(k);
@@ -974,6 +1077,7 @@ function renderCalendar(){
   document.getElementById('calBest').textContent = computeBestStreak(days);
   document.getElementById('calTalk').textContent =
     Object.keys(days).filter(k=>days[k].talk).length;
+  document.getElementById('calWords').textContent = Object.keys(vGet()).length;
 }
 
 // 지난 날 기록 직접 수정: 없음 → 학습함 → 학습+대화 → 없음
@@ -999,21 +1103,22 @@ function cycleDay(k){
   renderWeakList();
 }
 function renderWeakList(){
-  const srs = lsGet(LS_SRS, {}), today = dayKey();
-  const rows = Object.keys(srs)
-    .map(h => ({ h, r: srs[h] }))
-    .filter(o => o.r.wrong > 0 || (o.r.due && o.r.due <= today))
+  const today = dayKey();
+  const collect = (store, icon) => Object.keys(store)
+    .map(h => ({ h, r: store[h], icon }))
+    .filter(o => o.r.wrong > 0 || (o.r.due && o.r.due <= today));
+  const rows = collect(lsGet(LS_SRS, {}), '').concat(collect(vGet(), '📚 '))
     .sort((a,b)=> (b.r.wrong - a.r.wrong) || (a.r.due < b.r.due ? -1 : 1))
-    .slice(0, 12);
+    .slice(0, 16);
   const box = document.getElementById('weakList');
   if(!rows.length){
-    box.innerHTML = '<div class="weak-row"><span class="m">아직 복습 대기 중인 표현이 없어요. 퀴즈를 풀면 여기에 쌓여요.</span></div>';
+    box.innerHTML = '<div class="weak-row"><span class="m">아직 복습 대기 중인 게 없어요. 퀴즈나 단어장을 하면 여기에 쌓여요.</span></div>';
     return;
   }
   box.innerHTML = rows.map(o=>{
     const gap = o.r.due ? daysBetween(today, o.r.due) : null;
     const when = gap===null ? '' : (gap<=0 ? '지금 복습 가능' : gap+'일 뒤');
-    return '<div class="weak-row"><span class="h">'+o.h+'</span>'+
+    return '<div class="weak-row"><span class="h">'+o.icon+esc(o.h)+'</span>'+
            '<span class="m">'+(o.r.wrong?'✗'+o.r.wrong+' ':'')+when+'</span></div>';
   }).join('');
 }
@@ -1029,6 +1134,366 @@ function burstConfetti(){
     document.body.appendChild(el);
     setTimeout(()=>el.remove(),4000);
   }
+}
+
+/* ============================================================
+   단어장 — 플래시카드 → 4지선다 → 문장 배열 → 타이핑
+   같은 단어가 익숙해질수록 형식이 어려워지고, 섞여서 나와요.
+   ============================================================ */
+const LS_VSRS = "enq_vsrs";
+const NEW_PER_DAY = 12;   // 하루 새 단어
+const MAX_REVIEW_W = 24;  // 한 세션 복습 최대
+
+let vQueue = [], vIdx = 0, vAns = [], vDone = false, vLog = [], vFlipped = false;
+
+function vGet(){ return lsGet(LS_VSRS, {}); }
+function vRec(w){ return vGet()[w] || null; }
+
+/* 학습 단계(box)에 따라 형식이 올라가되, 위쪽 단계는 섞어서 나와요 */
+function modeFor(box){
+  if(box <= 1) return 'card';
+  if(box === 2) return 'mcq';
+  if(box === 3) return Math.random() < .75 ? 'build' : 'mcq';
+  if(box === 4) return Math.random() < .5  ? 'build' : 'type';
+  const r = Math.random();
+  return r < .4 ? 'build' : r < .8 ? 'type' : 'mcq';
+}
+
+function buildVocabQueue(){
+  const srs = vGet(), today = dayKey();
+  const seen = WORDS.filter(x => srs[x.w]);
+  const due  = seen.filter(x => srs[x.w].due && srs[x.w].due <= today)
+                   .sort((a,b)=> (srs[b.w].wrong||0)-(srs[a.w].wrong||0));
+  const fresh = WORDS.filter(x => !srs[x.w]).slice(0, NEW_PER_DAY);
+
+  const q = [];
+  // 1) 복습 먼저 — 각자 자기 단계에 맞는 형식으로
+  due.slice(0, MAX_REVIEW_W).forEach(x => q.push({ word:x, mode:modeFor(srs[x.w].box||1), review:true }));
+  // 2) 새 단어 — 5개씩 묶어서 [카드 5개 → 바로 퀴즈 5개] (같은 날 두 번 노출)
+  for(let i=0;i<fresh.length;i+=5){
+    const chunk = fresh.slice(i,i+5);
+    chunk.forEach(x => q.push({ word:x, mode:'card', fresh:true }));
+    chunk.forEach(x => q.push({ word:x, mode:'mcq',  fresh:true, again:true }));
+  }
+  return q;
+}
+
+function startVocab(){
+  vQueue = buildVocabQueue();
+  vIdx = 0; vLog = [];
+  goTo(5);
+  if(!vQueue.length){
+    document.getElementById('vStage').innerHTML =
+      '<div class="vfin"><div class="em">🌙</div><h2>오늘 몫은 다 끝냈어요</h2>'+
+      '<p>복습할 단어도 없고 새 단어도 다 봤어요.<br>내일 아침에 새 단어가 채워져요.</p></div>';
+    document.getElementById('vCount').textContent = '완료';
+    document.getElementById('vFill').style.width = '100%';
+    return;
+  }
+  renderVocab();
+}
+function quitVocab(){ goTo(0); refreshStatbar(); }
+
+function vProgress(){
+  document.getElementById('vCount').textContent = Math.min(vIdx+1, vQueue.length)+' / '+vQueue.length;
+  document.getElementById('vFill').style.width = (vIdx / vQueue.length * 100)+'%';
+}
+
+function vNext(){
+  vIdx++;
+  if(vIdx >= vQueue.length){ finishVocab(); return; }
+  renderVocab();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* 채점 — box를 올리거나 1로 되돌리고 다음 복습일을 정해요 */
+function gradeWord(w, correct, mode){
+  const srs = vGet();
+  const r = srs[w] || { box:0, wrong:0, right:0 };
+  if(correct){ r.box = Math.min((r.box||0)+1, INTERVALS.length); r.right++; }
+  else { r.box = 1; r.wrong++; }
+  r.due = daysFromNow(INTERVALS[r.box-1]);
+  r.last = dayKey();
+  srs[w] = r;
+  lsSet(LS_VSRS, srs);
+  vLog.push({ w:w, ok:correct, mode:mode, box:r.box });
+  if(correct) earnedXP += (mode==='card' ? 2 : mode==='mcq' ? 3 : 5);
+}
+
+function tagFor(mode){
+  const m = { card:['mode-card','🃏 새 단어 익히기'], mcq:['mode-mcq','🎯 뜻 고르기'],
+              build:['mode-build','🧩 문장 배열'], type:['mode-type','⌨️ 직접 쓰기'] }[mode];
+  return '<span class="mode-tag '+m[0]+'">'+m[1]+'</span>';
+}
+
+function renderVocab(){
+  vProgress();
+  const cur = vQueue[vIdx];
+  const badge = cur.review ? '<span class="mode-tag rev-tag" style="margin-left:6px">🔁 복습</span>'
+              : cur.again  ? '<span class="mode-tag new-tag" style="margin-left:6px">✨ 방금 배운 것</span>' : '';
+  const head = tagFor(cur.mode)+badge;
+  ({ card:renderCard, mcq:renderMcq, build:renderBuild, type:renderType })[cur.mode](cur, head);
+}
+
+/* ---------------- 1) 플래시카드 ---------------- */
+function renderCard(cur, head){
+  const x = cur.word;
+  vFlipped = false;
+  document.getElementById('vStage').innerHTML =
+    head +
+    '<div class="flip" id="flip" onclick="flipCard()"><div class="flip-in">'+
+      '<div class="face front"><div class="fw">'+esc(x.w)+'</div>'+
+        '<div class="fpos">'+esc(x.pos)+'</div>'+
+        '<div class="ftap">👆 눌러서 뜻 보기</div></div>'+
+      '<div class="face back">'+
+        '<div class="bko">'+esc(x.ko)+'</div>'+
+        '<div class="bcoll">🔗 '+esc(x.coll)+'</div>'+
+        '<div class="bex">'+clozeHtml(x)+'</div>'+
+        '<div class="bexk">'+esc(x.kx)+'</div>'+
+      '</div>'+
+    '</div></div>'+
+    '<div class="know-row" id="knowRow" style="display:none">'+
+      '<button class="know-btn kb-no"  onclick="cardAns(false)">🤔 헷갈려요</button>'+
+      '<button class="know-btn kb-yes" onclick="cardAns(true)">👍 알겠어요</button>'+
+    '</div>';
+}
+function flipCard(){
+  if(vFlipped) return;
+  vFlipped = true;
+  document.getElementById('flip').classList.add('on');
+  setTimeout(()=>{ document.getElementById('knowRow').style.display='flex'; }, 260);
+}
+function cardAns(ok){
+  const cur = vQueue[vIdx];
+  // 카드는 노출 단계라 "알겠어요"여도 한 단계만 올라가요
+  gradeWord(cur.word.w, ok, 'card');
+  vNext();
+}
+function clozeHtml(x){
+  return esc(x.en).replace(/_{2,}(?:\s+_{2,})*/g, '<b>'+esc(x.blank)+'</b>');
+}
+
+/* ---------------- 2) 4지선다 ---------------- */
+function renderMcq(cur, head){
+  const x = cur.word;
+  const pool = shuffle(WORDS.filter(o => o.w !== x.w && o.pos === x.pos));
+  const alt  = shuffle(WORDS.filter(o => o.w !== x.w));
+  const wrong = (pool.concat(alt)).filter((o,i,a)=>a.indexOf(o)===i).slice(0,3);
+  const opts = shuffle([x].concat(wrong));
+  document.getElementById('vStage').innerHTML =
+    head +
+    '<div class="quiz-q" style="margin-top:12px">'+esc(x.w)+
+      ' <span style="font-size:13px;color:var(--sub);font-weight:700">('+esc(x.pos)+')</span></div>'+
+    '<div id="vOpts">'+ opts.map((o,i)=>
+      '<button class="opt" onclick="mcqAns(this,'+(o.w===x.w)+')">'+esc(o.ko)+'</button>').join('') +'</div>';
+}
+function mcqAns(btn, ok){
+  const cur = vQueue[vIdx], x = cur.word;
+  document.querySelectorAll('#vOpts .opt').forEach(b=>{ b.disabled=true; });
+  btn.classList.add(ok ? 'correct' : 'wrong');
+  if(!ok){
+    document.querySelectorAll('#vOpts .opt').forEach(b=>{ if(b.textContent===x.ko) b.classList.add('correct'); });
+  }
+  gradeWord(x.w, ok, 'mcq');
+  const stage = document.getElementById('vStage');
+  stage.insertAdjacentHTML('beforeend',
+    '<div class="sol'+(ok?'':' tip')+'"><span class="lbl">'+(ok?'정답이에요':'이렇게 써요')+'</span>'+
+    clozeHtml(x)+'<div style="font-weight:600;opacity:.8;margin-top:4px">'+esc(x.kx)+'</div></div>'+
+    '<button class="check-btn go" onclick="vNext()">계속 →</button>');
+  stage.querySelector('.check-btn').scrollIntoView({block:'nearest', behavior:'smooth'});
+}
+
+/* ---------------- 3) 문장 배열 (타일) ---------------- */
+function fullSentence(x){ return x.en.replace(/_{2,}(?:\s+_{2,})*/g, x.blank); }
+
+/* 관사·시제 함정 타일 — 정확히 약점(관사·시제)을 노리는 오답 후보 */
+function infl(base, kind){
+  if(kind==='ing') return /[^e]e$/.test(base) ? base.slice(0,-1)+'ing' : base+'ing';
+  if(kind==='ed')  return /e$/.test(base) ? base+'d'
+                        : /[^aeiou]y$/.test(base) ? base.slice(0,-1)+'ied' : base+'ed';
+  if(kind==='s')   return /(s|x|z|ch|sh)$/.test(base) ? base+'es'
+                        : /[^aeiou]y$/.test(base) ? base.slice(0,-1)+'ies' : base+'s';
+  return base;
+}
+function makeTraps(tokens, x){
+  const bare = t => t.toLowerCase().replace(/[^a-z'-]/g,'');
+  const inSent = w => tokens.some(t => bare(t) === w);
+  const traps = [];
+  // 1) 관사 함정
+  if(inSent('the') && !inSent('a') && !inSent('an')) traps.push('a');
+  else if(inSent('a') || inSent('an')) traps.push('the');
+  // 2) 시제·형태 함정 — 사전형에서 규칙대로 만들어 실제 있는 단어만
+  const base = x.w.toLowerCase();
+  if(!/\s/.test(base) && /^[a-z]+$/.test(base) && base.length > 3){
+    // 자음 반복이 필요한 단어(submit→submitting)는 오탈자를 보여주지 않도록 -ed/-ing 제외
+    const dbl = /[^aeiou][aeiou][^aeiouwxy]$/.test(base);
+    (dbl ? ['s'] : ['ed','ing','s']).map(k => infl(base, k)).concat([base])
+      .forEach(f => { if(!inSent(f) && traps.indexOf(f) < 0) traps.push(f); });
+  }
+  // 3) 흔한 기능어 하나
+  const fillers = ['to','of','for','been','was','is','with','that'].filter(f => !inSent(f));
+  if(fillers.length) traps.push(fillers[Math.floor(Math.random()*fillers.length)]);
+  const max = tokens.length > 9 ? 2 : 3;
+  return shuffle(traps.filter((t,i,a) => t && a.indexOf(t)===i && !inSent(t))).slice(0, max);
+}
+function renderBuild(cur, head){
+  const x = cur.word;
+  const sent = fullSentence(x);
+  const tokens = sent.split(/\s+/);
+  const traps = makeTraps(tokens, x);
+  const bank = shuffle(tokens.concat(traps));
+  vAns = []; vDone = false;
+  document.getElementById('vStage').innerHTML =
+    head +
+    '<div class="build-ko" style="margin-top:12px">'+esc(x.kx)+'</div>'+
+    '<div class="build-hint">단어를 눌러 영어 문장을 만들어 보세요 · <b>'+esc(x.w)+'</b> 사용 · 안 쓰는 단어도 섞여 있어요</div>'+
+    '<div class="drop" id="drop"></div>'+
+    '<div class="bank" id="bank">'+
+      bank.map((t,i)=>'<button class="tile" data-i="'+i+'" onclick="pickTile('+i+')">'+esc(t)+'</button>').join('')+
+    '</div>'+
+    '<button class="check-btn" id="chk" onclick="checkBuild()" disabled>확인</button>';
+  document.getElementById('drop').dataset.answer = sent;
+}
+function pickTile(i){
+  if(vDone) return;
+  const src = document.querySelector('#bank .tile[data-i="'+i+'"]');
+  if(!src || src.classList.contains('ghost')) return;
+  src.classList.add('ghost');
+  const t = document.createElement('button');
+  t.className='tile'; t.textContent=src.textContent; t.dataset.i=i;
+  t.onclick=()=>returnTile(i);
+  document.getElementById('drop').appendChild(t);
+  vAns.push(i);
+  syncCheck();
+}
+function returnTile(i){
+  if(vDone) return;
+  const t = document.querySelector('#drop .tile[data-i="'+i+'"]');
+  if(t) t.remove();
+  const src = document.querySelector('#bank .tile[data-i="'+i+'"]');
+  if(src) src.classList.remove('ghost');
+  vAns = vAns.filter(v=>v!==i);
+  syncCheck();
+}
+function syncCheck(){
+  const b = document.getElementById('chk');
+  b.disabled = vAns.length === 0;
+}
+function checkBuild(){
+  if(vDone) return;
+  vDone = true;
+  const drop = document.getElementById('drop');
+  const got = Array.from(drop.querySelectorAll('.tile')).map(t=>t.textContent).join(' ');
+  const want = drop.dataset.answer;
+  const ok = norm(got) === norm(want);
+  drop.classList.add(ok ? 'ok' : 'no');
+  document.querySelectorAll('#bank .tile').forEach(t=>t.classList.add('dim'));
+  const cur = vQueue[vIdx];
+  gradeWord(cur.word.w, ok, 'build');
+  const stage = document.getElementById('vStage');
+  document.getElementById('chk').remove();
+  stage.insertAdjacentHTML('beforeend',
+    (ok ? '<div class="sol"><span class="lbl">정확해요! 🎉</span>'+esc(want)+'</div>'
+        : '<div class="sol tip"><span class="lbl">이렇게 써요</span>'+esc(want)+
+          '<div style="font-weight:600;opacity:.85;margin-top:5px">내가 만든 문장: '+esc(got||'(비어 있음)')+'</div></div>')+
+    '<button class="check-btn go" onclick="vNext()">계속 →</button>');
+  stage.querySelector('.check-btn').scrollIntoView({block:'nearest', behavior:'smooth'});
+}
+function norm(s){ return s.toLowerCase().replace(/[.,!?"']/g,'').replace(/\s+/g,' ').trim(); }
+
+/* ---------------- 4) 타이핑 ---------------- */
+function renderType(cur, head){
+  const x = cur.word;
+  const shown = esc(x.en).replace(/_{2,}(?:\s+_{2,})*/g, '<i>______</i>');
+  document.getElementById('vStage').innerHTML =
+    head +
+    '<div class="type-ko" style="margin-top:12px">'+esc(x.ko)+'</div>'+
+    '<div class="build-hint">빈칸에 들어갈 말을 직접 써보세요 · 문장에 맞는 형태로!</div>'+
+    '<div class="type-sent">'+shown+'<div style="font-size:12.5px;margin-top:7px;opacity:.85">'+esc(x.kx)+'</div></div>'+
+    '<input class="type-in" id="tin" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="영어로 입력">'+
+    '<div class="type-first">💡 힌트: '+esc(x.blank[0])+''+'·'.repeat(Math.max(1,x.blank.length-1))+' ('+x.blank.length+'글자)</div>'+
+    '<button class="check-btn" id="chk" onclick="checkType()">확인</button>';
+  const inp = document.getElementById('tin');
+  inp.addEventListener('keydown', e=>{ if(e.key==='Enter') checkType(); });
+  setTimeout(()=>inp.focus(), 150);
+}
+function lev(a,b){
+  const m=[...Array(a.length+1)].map((_,i)=>[i,...Array(b.length).fill(0)]);
+  for(let j=0;j<=b.length;j++) m[0][j]=j;
+  for(let i=1;i<=a.length;i++) for(let j=1;j<=b.length;j++)
+    { m[i][j]=Math.min(m[i-1][j]+1, m[i][j-1]+1, m[i-1][j-1]+(a[i-1]===b[j-1]?0:1));
+      if(i>1&&j>1&&a[i-1]===b[j-2]&&a[i-2]===b[j-1]) m[i][j]=Math.min(m[i][j], m[i-2][j-2]+1); }
+  return m[a.length][b.length];
+}
+function checkType(){
+  if(vDone) return;
+  const cur = vQueue[vIdx], x = cur.word;
+  const inp = document.getElementById('tin');
+  const got = norm(inp.value), want = norm(x.blank);
+  if(!got) return;
+  vDone = true;
+  const exact = got === want;
+  // 철자 하나는 봐주되, 첫 글자가 다르거나 다른 실제 단어면 오답 (ensure↔insure 같은 함정 방지)
+  const otherWord = WORDS.some(o => o.w !== x.w && (norm(o.w) === got || norm(o.blank) === got));
+  const close = !exact && want.length >= 6 && got[0] === want[0]
+                && Math.abs(got.length - want.length) <= 1
+                && lev(got, want) <= 1 && !otherWord;
+  const ok = exact || close;
+  inp.classList.add(ok ? 'ok' : 'no');
+  inp.disabled = true;
+  gradeWord(x.w, ok, 'type');
+  const stage = document.getElementById('vStage');
+  document.getElementById('chk').remove();
+  let box;
+  if(exact) box = '<div class="sol"><span class="lbl">정확해요! 🎉</span>'+clozeHtml(x)+'</div>';
+  else if(close) box = '<div class="sol"><span class="lbl">맞았어요 — 철자만 살짝!</span>'+
+      '입력: '+esc(inp.value)+' → 정답: <b>'+esc(x.blank)+'</b></div>';
+  else box = '<div class="sol tip"><span class="lbl">정답은 이거예요</span><b>'+esc(x.blank)+'</b><br>'+
+      clozeHtml(x)+'<div style="font-weight:600;opacity:.85;margin-top:4px">'+esc(x.coll)+'</div></div>';
+  stage.insertAdjacentHTML('beforeend', box + '<button class="check-btn go" onclick="vNext()">계속 →</button>');
+  stage.querySelector('.check-btn').scrollIntoView({block:'nearest', behavior:'smooth'});
+}
+
+/* ---------------- 마무리 ---------------- */
+function finishVocab(){
+  document.getElementById('vFill').style.width='100%';
+  document.getElementById('vCount').textContent='완료';
+  const uniq = {};
+  vLog.forEach(l => { if(!uniq[l.w] || !l.ok) uniq[l.w] = l; });
+  const rows = Object.values(uniq);
+  const okN = rows.filter(r=>r.ok).length;
+  const words = {}; WORDS.forEach(x=>words[x.w]=x);
+  saveVocabDay(rows.length, okN);
+  document.getElementById('vStage').innerHTML =
+    '<div class="vfin"><div class="em">'+(okN===rows.length?'🏆':okN>=rows.length*.6?'🎉':'💪')+'</div>'+
+    '<h2>단어 '+rows.length+'개 완료!</h2>'+
+    '<p>맞힌 단어 '+okN+'개 · +'+(earnedXP)+' XP<br>'+
+    '<span style="font-size:12.5px">틀린 단어는 내일 다시 나와요. 맞힌 단어는 점점 뜸하게 나와요.</span></p>'+
+    '<div class="vlist">'+ rows.map(r=>{
+      const x = words[r.w] || {ko:''};
+      const nd = INTERVALS[Math.min((r.box||1)-1, INTERVALS.length-1)];
+      return '<div class="vrow"><div class="w">'+esc(r.w)+'</div>'+
+             '<div class="k">'+esc(x.ko)+'</div>'+
+             '<div class="st" style="background:'+(r.ok?'var(--good-bg)':'var(--bad-bg)')+
+             ';color:'+(r.ok?'#128A55':'#C13439')+'">'+(r.ok?nd+'일 뒤':'내일 다시')+'</div></div>';
+    }).join('') +'</div></div>'+
+    '<button class="check-btn go" onclick="quitVocab()" style="margin-top:16px">홈으로 →</button>';
+  burstConfetti();
+  refreshStatbar();
+}
+function saveVocabDay(total, ok){
+  const days = lsGet(LS_DAYS, {}), k = dayKey();
+  const d = days[k] || { xp:0, score:0, total:0, rounds:0 };
+  d.xp = (d.xp||0) + earnedXP;
+  d.vocab = (d.vocab||0) + total;
+  d.vocabOk = (d.vocabOk||0) + ok;
+  days[k] = d;
+  lsSet(LS_DAYS, days);
+  earnedXP = 0;
+}
+function vocabDue(){
+  const srs = vGet(), t = dayKey();
+  return Object.keys(srs).filter(w => srs[w].due && srs[w].due <= t).length;
 }
 
 (function init(){
